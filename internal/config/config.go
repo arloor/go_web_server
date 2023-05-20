@@ -1,6 +1,8 @@
 package config
 
-import "os"
+import (
+	"os"
+)
 
 type Config struct {
 	Addr    string
@@ -34,10 +36,10 @@ func init() {
 	if key == "" {
 		key = "privkey.pem"
 	}
-	config = Config{
+	Instance = Config{
 		Addr:    addrEnv,
-		useTls:  useTls,
-		cert:    cert,
-		privKey: key,
+		UseTls:  useTls,
+		Cert:    cert,
+		PrivKey: key,
 	}
 }

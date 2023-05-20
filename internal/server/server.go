@@ -1,18 +1,18 @@
 package server
 
 import (
+	"fmt"
 	"go_web_server/internal/config"
 	"net/http"
 )
 
-func serve() {
-	config := config.Instance
+func Serve() {
+	instance := config.Instance
 	http.HandleFunc("/ip", writeIp)
-	if !config.UseTls {
-		http.ListenAndServe(config.Addr, nil)
-	}else {
-		http.ListenAndServe(config.Addr,config.CERT,config., nil)
+	if !instance.UseTls {
+		fmt.Printf("listen on http")
+		http.ListenAndServe(instance.Addr, nil)
+	} else {
+		http.ListenAndServeTLS(instance.Addr, instance.Cert, instance.PrivKey, nil)
 	}
 }
-
-
