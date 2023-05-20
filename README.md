@@ -1,5 +1,13 @@
 ```shell
 ## 打包
+yum install -y rpm-build
+yum install -y rpmdevtools
+rm -rf ~/rpmbuild
+rpmdev-setuptree
+```
+
+```shell
+## 打包
 wget https://raw.githubusercontent.com/arloor/go_web_server/master/rpm/go_web_server.spec -O /var/go_web_server.spec
 rpmbuild -bb /var/go_web_server.spec
 
