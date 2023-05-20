@@ -21,7 +21,7 @@ const AddrEnv = "addr"
 const UseTls = "use_tls"
 const CERT = "cert"
 const KEY = "key"
-const logPath = "logPath"
+const logPath = "log_path"
 
 func init() {
 	useTls := os.Getenv(UseTls) == "true"

@@ -1,5 +1,5 @@
 addr=":8443"
-useTls=true
+use_tls=true
 cert=/usr/share/go_web_server/cert.pem
 key=/usr/share/go_web_server/privkey.pem
-logPath=/data/var/log/go_web_server.log
+log_path=/data/var/log/go_web_server.log
