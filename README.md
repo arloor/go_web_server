@@ -13,7 +13,7 @@ rpmbuild -bb /var/go_web_server.spec
 
 ## 安装
 version=0.1
-release=6.all
+release=7.all
 echo RPM信息
 rpm -qpi ~/rpmbuild/RPMS/x86_64/go_web_server-${version}-${release}.x86_64.rpm
 echo 配置文件
