@@ -1,6 +1,6 @@
 Name:           go_web_server
 Version:        0.1
-Release:        6.all
+Release:        7.all
 Summary:        GO WEB Server
 
 License:        Apache License 2.0
@@ -30,7 +30,7 @@ fi
 %build
 cd /tmp/go_web_server
 go mod tidy
-go build go_web_server/cmd/go_web_server
+CGO_ENABLED=0 go build -ldflags '-w -s' -a -installsuffix cgo -o go_web_server go_web_server/cmd/go_web_server
 
 %install
 cd /tmp/go_web_server
