@@ -5,13 +5,14 @@ import (
 	"net/http"
 )
 
-func Serve() {
+func Serve() error {
 	http.HandleFunc("/ip", writeIp)
 	http.HandleFunc("/", fileHandler().ServeHTTP)
 	instance := config.Instance
 	if !instance.UseTls {
-		http.ListenAndServe(instance.Addr, nil)
+		return http.ListenAndServe(instance.Addr, nil)
 	} else {
-		http.ListenAndServeTLS(instance.Addr, instance.Cert, instance.PrivKey, nil)
+		return http.ListenAndServeTLS(instance.Addr, instance.Cert, instance.PrivKey, nil)
 	}
+	return nil
 }

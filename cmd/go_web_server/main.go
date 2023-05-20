@@ -2,9 +2,12 @@ package main
 
 import (
 	"go_web_server/internal/server"
+	"log"
 )
 
 func main() {
-	server.Serve()
-	select {}
+	err := server.Serve()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
