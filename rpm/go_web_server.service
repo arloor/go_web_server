@@ -1,0 +1,15 @@
+[Unit]
+Description=go_web_server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/tmp
+EnvironmentFile=/etc/go_web_server/env
+ExecStart=/usr/bin/go_web_server
+LimitNOFILE=100000
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

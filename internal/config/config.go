@@ -1,6 +1,9 @@
 package config
 
 import (
+	"gopkg.in/natefinch/lumberjack.v2"
+	"io"
+	"log"
 	"os"
 )
 
@@ -9,6 +12,7 @@ type Config struct {
 	UseTls  bool
 	Cert    string
 	PrivKey string
+	LogPath string
 }
 
 var Instance Config
@@ -17,6 +21,7 @@ const AddrEnv = "go_server_port"
 const UseTls = "use_tls"
 const CERT = "cert"
 const KEY = "key"
+const logPath = "logPath"
 
 func init() {
 	useTls := os.Getenv(UseTls) == "true"
@@ -36,10 +41,31 @@ func init() {
 	if key == "" {
 		key = "privkey.pem"
 	}
+	logfile := os.Getenv(logPath)
+	if logfile == "" {
+		logfile = "/var/log/go_web_server.log"
+	}
 	Instance = Config{
 		Addr:    addrEnv,
 		UseTls:  useTls,
 		Cert:    cert,
 		PrivKey: key,
+		LogPath: logfile,
 	}
+	initLog()
+	log.Println("go web server config:", Instance)
+}
+
+func initLog() {
+	file := Instance.LogPath
+	rollingFile := &lumberjack.Logger{
+		Filename:   file,
+		MaxSize:    50,
+		MaxAge:     14,
+		MaxBackups: 10,
+		Compress:   false,
+	}
+	mw := io.MultiWriter(os.Stdout, rollingFile)
+	log.SetOutput(mw)
+	log.SetFlags(log.Lshortfile | log.Flags())
 }
