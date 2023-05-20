@@ -4,11 +4,22 @@ yum install -y rpm-build
 yum install -y rpmdevtools
 rm -rf ~/rpmbuild
 rpmdev-setuptree
+yum install -y golang
 ```
 
 ```shell
 ## 打包
-wget https://raw.githubusercontent.com/arloor/go_web_server/master/rpm/go_web_server.spec -O /var/go_web_server.spec
+if [ -d /var/go_web_server ]; then
+        cd /var/go_web_server;
+          git pull --ff-only || {
+            echo "git pull 失败，重新clone"
+            cd /var
+            rm -rf /var/go_web_server
+            git clone %{URL} /var/go_web_server
+          }
+else
+        git clone %{URL} /var/go_web_server
+fi
 rpmbuild -bb /var/go_web_server.spec
 
 ## 安装
