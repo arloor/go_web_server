@@ -14,5 +14,4 @@ func Serve() error {
 	} else {
 		return http.ListenAndServeTLS(instance.Addr, instance.Cert, instance.PrivKey, nil)
 	}
-	return nil
 }
