@@ -29,6 +29,7 @@ fi
 
 %build
 cd /tmp/go_web_server
+go mod tidy
 go build go_web_server/cmd/go_web_server
 
 %install
