@@ -4,7 +4,7 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-WorkingDirectory=/tmp
+WorkingDirectory=/var/go_web_server
 EnvironmentFile=/etc/go_web_server/env
 ExecStart=/usr/bin/go_web_server
 LimitNOFILE=100000

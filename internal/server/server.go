@@ -7,6 +7,7 @@ import (
 
 func Serve() {
 	http.HandleFunc("/ip", writeIp)
+	http.HandleFunc("/", fileHandler().ServeHTTP)
 	instance := config.Instance
 	if !instance.UseTls {
 		http.ListenAndServe(instance.Addr, nil)

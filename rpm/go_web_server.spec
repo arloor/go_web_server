@@ -37,9 +37,11 @@ cd /tmp/go_web_server
 mkdir -p %{buildroot}/usr/bin
 mkdir -p %{buildroot}/lib/systemd/system
 mkdir -p %{buildroot}/etc/go_web_server
+mkdir -p %{buildroot}/var/go_web_server
 install  -m755 go_web_server %{buildroot}/usr/bin/go_web_server
 install  -m755 rpm/go_web_server.service %{buildroot}/lib/systemd/system/go_web_server.service
 install  -m755 rpm/env %{buildroot}/etc/go_web_server/env
+install  -m755 favicon.ico %{buildroot}/var/go_web_server/favicon.ico
 
 %check
 

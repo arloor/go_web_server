@@ -17,3 +17,10 @@ func writeIp(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+
+func fileHandler() http.Handler {
+	fs := http.FileServer(http.Dir("."))
+
+	// 设定路由，所有的请求都交给fs去处理
+	return http.StripPrefix("/", fs)
+}
