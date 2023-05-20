@@ -41,7 +41,8 @@ mkdir -p %{buildroot}/var/go_web_server
 install  -m755 go_web_server %{buildroot}/usr/bin/go_web_server
 install  -m755 rpm/go_web_server.service %{buildroot}/lib/systemd/system/go_web_server.service
 install  -m755 rpm/env %{buildroot}/etc/go_web_server/env
-install  -m755 favicon.ico %{buildroot}/var/go_web_server/favicon.ico
+install  -m755 rpm/favicon.ico %{buildroot}/var/go_web_server/favicon.ico
+install  -m755 rpm/index.html %{buildroot}/var/go_web_server/index.html
 
 %check
 
@@ -66,6 +67,7 @@ systemctl daemon-reload
 %files
 /usr/bin/go_web_server
 %config(noreplace) /var/go_web_server/favicon.ico
+%config(noreplace) /var/go_web_server/index.html
 %config /lib/systemd/system/go_web_server.service
 %config(noreplace) /etc/go_web_server/env
 
