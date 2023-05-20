@@ -1,6 +1,6 @@
 Name:           go_web_server
 Version:        0.1
-Release:        4.all
+Release:        5.all
 Summary:        GO WEB Server
 
 License:        Apache License 2.0
