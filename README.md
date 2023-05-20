@@ -23,9 +23,7 @@ rpm -qpl ~/rpmbuild/RPMS/x86_64/go_web_server-${version}-${release}.x86_64.rpm
 systemctl stop go_web_server
 # rpm -ivh在安装新版本时会报错文件冲突，原因是他没有进行更新或降级的能力，而yum install可以处理可执行文件的更新或降级
 yum install -y ~/rpmbuild/RPMS/x86_64/go_web_server-${version}-${release}.x86_64.rpm
-[ -f /etc/go_web_server/env.rpmsave ]&&{
-  mv /etc/go_web_server/env.rpmsave /etc/go_web_server/env
-}
+
 ## 启动
 systemctl daemon-reload
 systemctl start go_web_server

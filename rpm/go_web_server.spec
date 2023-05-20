@@ -50,6 +50,9 @@ install  -m755 rpm/index.html %{buildroot}/var/go_web_server/index.html
 
 
 %post
+[ -f /etc/go_web_server/env.rpmsave ]&&{
+  mv /etc/go_web_server/env.rpmsave /etc/go_web_server/env
+}
 [ ! -d /usr/share/go_web_server ]&&{
   mkdir -p /usr/share/go_web_server
 }
