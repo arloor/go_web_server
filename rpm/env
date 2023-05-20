@@ -1,4 +1,4 @@
-go_server_port=8443
+addr=":8443"
 useTls=true
 cert=/usr/share/go_web_server/cert.pem
 key=/usr/share/go_web_server/privkey.pem

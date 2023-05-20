@@ -17,7 +17,7 @@ type Config struct {
 
 var Instance Config
 
-const AddrEnv = "go_server_port"
+const AddrEnv = "addr"
 const UseTls = "use_tls"
 const CERT = "cert"
 const KEY = "key"
