@@ -15,10 +15,10 @@ if [ -d /var/go_web_server ]; then
             echo "git pull 失败，重新clone"
             cd /var
             rm -rf /var/go_web_server
-            git clone %{URL} /var/go_web_server
+            git clone https://github.com/arloor/go_web_server /var/go_web_server
           }
 else
-        git clone %{URL} /var/go_web_server
+        git clone https://github.com/arloor/go_web_server /var/go_web_server
 fi
 rpmbuild -bb /var/go_web_server.spec
 
