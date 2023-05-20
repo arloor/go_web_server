@@ -20,7 +20,7 @@ if [ -d /var/go_web_server ]; then
 else
         git clone https://github.com/arloor/go_web_server /var/go_web_server
 fi
-rpmbuild -bb /var/go_web_server.spec
+rpmbuild -bb /var/go_web_server/rpm/go_web_server.spec
 
 ## 安装
 version=0.1
