@@ -65,7 +65,7 @@ systemctl daemon-reload
 
 %files
 /usr/bin/go_web_server
-%config(noreplace) var/go_web_server/favicon.ico
+%config(noreplace) /var/go_web_server/favicon.ico
 %config /lib/systemd/system/go_web_server.service
 %config(noreplace) /etc/go_web_server/env
 
