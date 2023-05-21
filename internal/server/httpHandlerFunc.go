@@ -6,6 +6,7 @@ import (
 	"go_web_server/internal/config"
 	"io"
 	"log"
+	"math/rand"
 	"net"
 	"net/http"
 	"strings"
@@ -72,6 +73,9 @@ func connect(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		w.WriteHeader(http.StatusOK)
+		for i := 0; i < rand.Intn(150); i++ {
+			w.Header().Add("Server", "go_web_server")
+		}
 		wFlusher.Flush()
 		dualStream(targetConn, r.Body, w)
 		return
@@ -111,7 +115,9 @@ func serveHijack(w http.ResponseWriter, targetConn net.Conn) (int, error) {
 		ProtoMinor: 1,
 		Header:     make(http.Header),
 	}
-	res.Header.Set("Server", "Caddy")
+	for i := 0; i < rand.Intn(150); i++ {
+		res.Header.Add("Server", "go_web_server")
+	}
 
 	err = res.Write(clientConn)
 	if err != nil {
