@@ -3,6 +3,7 @@ package server
 import (
 	"go_web_server/internal/config"
 	"net/http"
+	"time"
 )
 
 func Serve() error {
@@ -11,9 +12,14 @@ func Serve() error {
 
 	instance := config.Instance
 	handler := MineHandler{}
+	srv := &http.Server{
+		Addr:        instance.Addr,
+		Handler:     handler,
+		IdleTimeout: 60 * time.Second, // Set idle timeout
+	}
 	if !instance.UseTls {
-		return http.ListenAndServe(instance.Addr, handler)
+		return srv.ListenAndServe()
 	} else {
-		return http.ListenAndServeTLS(instance.Addr, instance.Cert, instance.PrivKey, handler)
+		return srv.ListenAndServeTLS(instance.Cert, instance.PrivKey)
 	}
 }
