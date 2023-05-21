@@ -3,3 +3,4 @@ use_tls=true
 cert=/usr/share/go_web_server/cert.pem
 key=/usr/share/go_web_server/privkey.pem
 log_path=/data/var/log/go_web_server.log
+web_path="."

@@ -13,6 +13,7 @@ type Config struct {
 	Cert    string
 	PrivKey string
 	LogPath string
+	WebPath string
 }
 
 var Instance Config
@@ -22,6 +23,7 @@ const UseTls = "use_tls"
 const CERT = "cert"
 const KEY = "key"
 const logPath = "log_path"
+const webPath = "web_path"
 
 func init() {
 	useTls := os.Getenv(UseTls) == "true"
@@ -45,12 +47,17 @@ func init() {
 	if logfile == "" {
 		logfile = "/var/log/go_web_server.log"
 	}
+	webContentPath := os.Getenv(webPath)
+	if webContentPath == "" {
+		webContentPath = "."
+	}
 	Instance = Config{
 		Addr:    addrEnv,
 		UseTls:  useTls,
 		Cert:    cert,
 		PrivKey: key,
 		LogPath: logfile,
+		WebPath: webContentPath,
 	}
 	initLog()
 	log.Println("go web server config:", Instance)

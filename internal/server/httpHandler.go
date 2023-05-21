@@ -2,6 +2,7 @@ package server
 
 import (
 	"fmt"
+	"go_web_server/internal/config"
 	"log"
 	"net/http"
 	"strings"
@@ -34,7 +35,7 @@ func fileHandlerFunc() http.HandlerFunc {
 			http.Error(w, "invalid URL path", http.StatusBadRequest)
 			return
 		}
-		fs := http.FileServer(http.Dir("."))
+		fs := http.FileServer(http.Dir(config.Instance.WebPath))
 		http.StripPrefix("/", fs).ServeHTTP(w, r)
 	})
 }
