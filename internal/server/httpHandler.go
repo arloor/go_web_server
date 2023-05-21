@@ -41,7 +41,7 @@ func fileHandlerFunc() http.HandlerFunc {
 }
 
 func logRequest(r *http.Request) {
-	log.Println("request for", r.URL.Path, "from", r.RemoteAddr)
+	log.Println(fmt.Sprintf("%-4s", r.RemoteAddr), "====>", r.URL.Path)
 }
 
 func containsDotDot(v string) bool {
