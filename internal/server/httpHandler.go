@@ -9,7 +9,7 @@ import (
 )
 
 func writeIp(w http.ResponseWriter, r *http.Request) {
-	log.Println("request for", r.URL.Path, "from", r.RemoteAddr)
+	logRequest(r)
 	remoteAddr := r.RemoteAddr
 	index := strings.LastIndex(remoteAddr, ":")
 	if index == -1 {
@@ -41,7 +41,7 @@ func fileHandlerFunc() http.HandlerFunc {
 }
 
 func logRequest(r *http.Request) {
-	log.Println(fmt.Sprintf("%-4s", r.RemoteAddr), "====>", r.URL.Path)
+	log.Println(fmt.Sprintf("%21s", r.RemoteAddr), "====>", r.URL.Path)
 }
 
 func containsDotDot(v string) bool {
