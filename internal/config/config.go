@@ -8,12 +8,13 @@ import (
 )
 
 type Config struct {
-	Addr    string
-	UseTls  bool
-	Cert    string
-	PrivKey string
-	LogPath string
-	WebPath string
+	Addr      string
+	UseTls    bool
+	Cert      string
+	PrivKey   string
+	LogPath   string
+	WebPath   string
+	BasicAuth string
 }
 
 var Instance Config
@@ -24,6 +25,7 @@ const CERT = "cert"
 const KEY = "key"
 const logPath = "log_path"
 const webPath = "web_path"
+const constBasicAuth = "basic_auth"
 
 func init() {
 	useTls := os.Getenv(UseTls) == "true"
@@ -51,13 +53,15 @@ func init() {
 	if webContentPath == "" {
 		webContentPath = "."
 	}
+	basicAuth := os.Getenv(constBasicAuth)
 	Instance = Config{
-		Addr:    addrEnv,
-		UseTls:  useTls,
-		Cert:    cert,
-		PrivKey: key,
-		LogPath: logfile,
-		WebPath: webContentPath,
+		Addr:      addrEnv,
+		UseTls:    useTls,
+		Cert:      cert,
+		PrivKey:   key,
+		LogPath:   logfile,
+		WebPath:   webContentPath,
+		BasicAuth: basicAuth,
 	}
 	initLog()
 	log.Println("go web server config:", Instance)

@@ -8,10 +8,12 @@ import (
 func Serve() error {
 	http.HandleFunc("/ip", writeIp)
 	http.HandleFunc("/", fileHandlerFunc())
+
 	instance := config.Instance
+	handler := MineHandler{}
 	if !instance.UseTls {
-		return http.ListenAndServe(instance.Addr, nil)
+		return http.ListenAndServe(instance.Addr, handler)
 	} else {
-		return http.ListenAndServeTLS(instance.Addr, instance.Cert, instance.PrivKey, nil)
+		return http.ListenAndServeTLS(instance.Addr, instance.Cert, instance.PrivKey, handler)
 	}
 }

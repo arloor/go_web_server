@@ -1,59 +1,16 @@
 package server
 
-import (
-	"fmt"
-	"go_web_server/internal/config"
-	"log"
-	"net/http"
-	"strings"
-)
+import "net/http"
 
-func writeIp(w http.ResponseWriter, r *http.Request) {
+type MineHandler struct {
+}
+
+func (MineHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	logRequest(r)
-	remoteAddr := r.RemoteAddr
-	index := strings.LastIndex(remoteAddr, ":")
-	if index == -1 {
-		fmt.Fprintf(w, "addr is not ip:port %s", remoteAddr)
+	if r.Method == http.MethodConnect { //connect处理
+		connect(w, r)
 	} else {
-		ip := remoteAddr[:index]
-		fmt.Fprint(w, ip)
+		http.DefaultServeMux.ServeHTTP(w, r)
 	}
 
 }
-
-func fileHandlerFunc() http.HandlerFunc {
-
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		logRequest(r)
-		if containsDotDot(r.URL.Path) {
-			// Too many programs use r.URL.Path to construct the argument to
-			// serveFile. Reject the request under the assumption that happened
-			// here and ".." may not be wanted.
-			// Note that name might not contain "..", for example if code (still
-			// incorrectly) used filepath.Join(myDir, r.URL.Path).
-			log.Println(r.URL.Path, "is invalid from", r.RemoteAddr)
-			http.Error(w, "invalid URL path", http.StatusBadRequest)
-			return
-		}
-		fs := http.FileServer(http.Dir(config.Instance.WebPath))
-		http.StripPrefix("/", fs).ServeHTTP(w, r)
-	})
-}
-
-func logRequest(r *http.Request) {
-	log.Println(fmt.Sprintf("%21s", r.RemoteAddr), "====>", r.URL.Path)
-}
-
-func containsDotDot(v string) bool {
-	if !strings.Contains(v, "..") {
-		return false
-	}
-	for _, ent := range strings.FieldsFunc(v, isSlashRune) {
-		if ent == ".." {
-			return true
-		}
-	}
-	return false
-}
-
-func isSlashRune(r rune) bool { return r == '/' || r == '\\' }
