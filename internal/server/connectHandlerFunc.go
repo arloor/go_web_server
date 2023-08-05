@@ -62,7 +62,8 @@ func connect(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		w.WriteHeader(http.StatusOK)
-		for i := 0; i < rand.Intn(150); i++ {
+		randN := rand.Intn(150)
+		for i := 0; i < randN; i++ {
 			w.Header().Add("Server", "go_web_server")
 		}
 		wFlusher.Flush()
