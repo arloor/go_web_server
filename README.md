@@ -45,6 +45,22 @@ systemctl status go_web_server --no-page
 
 ```bash
 yum install -y golang
+if ! git clone https://github.com/arloor/go_web_server /var/go_web_server; then
+  cd /var/go_web_server;
+  git pull --ff-only||{
+    rm -rf /var/go_web_server;
+    git clone https://github.com/arloor/go_web_server /var/go_web_server;
+    cd /var/go_web_server;
+  }
+else
+  cd /var/go_web_server;
+fi
+
 go mod tidy
 CGO_ENABLED=0 go build -ldflags '-w -s' -a -installsuffix cgo -o go_web_server go_web_server/cmd/go_web_server
+pass=$(cat /root/.ccs_pass)
+commit=$(git rev-parse --short=8 HEAD)
+podman build -t go_web_server -f Dockerfile . --tag ccr.ccs.tencentyun.com/arloor/go_web_server:$commit
+podman login ccr.ccs.tencentyun.com -u 1293181335 -p "${pass}" # 输入账号密码登陆docker hub
+podman push ccr.ccs.tencentyun.com/arloor/go_web_server:$commit
 ```
