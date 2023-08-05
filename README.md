@@ -41,3 +41,10 @@ systemctl daemon-reload
 systemctl start go_web_server
 systemctl status go_web_server --no-page
 ```
+
+
+```bash
+yum install -y golang
+go mod tidy
+CGO_ENABLED=0 go build -ldflags '-w -s' -a -installsuffix cgo -o go_web_server go_web_server/cmd/go_web_server
+```
