@@ -1,3 +1,8 @@
+
+```bash
+go_web_server --addr=:444 --cert=/certs/cert --key=/certs/key --auth="Basic xxxxxxxxx=="
+```
+
 ```shell
 ## 打包
 yum install -y rpm-build
