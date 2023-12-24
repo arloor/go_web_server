@@ -1,71 +1,33 @@
+## static file serve AND Http TUNNEL proxy
+
+### Usage
 
 ```bash
-go_web_server --addr=:444 --cert=/certs/cert --key=/certs/key --auth="Basic xxxxxxxxx=="
+$ curl -LO https://github.com/arloor/go_web_server/releases/download/v1.0.0/go_web_server # v1.0.0 is auto updated by github action
+$ chmod +x go_web_server                                                                 
+$ ./go_web_server 
+2023/12/24 15:46:27 config.go:38: go web server config: 
+addr: :8080
+tls: false
+cert: cert.pem
+key: privkey.pem
+log: /tmp/proxy.log
+content: /data
+auth: ""
+2023/12/24 15:46:35 httpHandlerFunc.go:47: xxxxxxxxx:55054     GET / HTTP/1.1
+2023/12/24 15:46:35 httpHandlerFunc.go:47: xxxxxxxxx:55054     GET /favicon.ico HTTP/1.1
+2023/12/24 15:46:36 httpHandlerFunc.go:47: xxxxxxxxx:55054     GET /rust_http_proxy/ HTTP/1.1
+.....
+2023/12/24 15:47:38 httpHandlerFunc.go:45: xxxxxxxxx:56902 CONNECT baidu.com:443 HTTP/1.1
+2023/12/24 15:47:46 httpHandlerFunc.go:45: xxxxxxxxx:38208 CONNECT www.baidu.com:443 HTTP/1.1
 ```
 
-```shell
-## 打包
-yum install -y rpm-build
-yum install -y rpmdevtools
-rm -rf ~/rpmbuild
-rpmdev-setuptree
-yum install -y golang
-```
+### static files dowload
 
-```shell
-## 打包
-if [ -d /var/go_web_server ]; then
-        cd /var/go_web_server;
-          git pull --ff-only || {
-            echo "git pull 失败，重新clone"
-            cd /var
-            rm -rf /var/go_web_server
-            git clone https://github.com/arloor/go_web_server /var/go_web_server
-          }
-else
-        git clone https://github.com/arloor/go_web_server /var/go_web_server
-fi
-rpmbuild -bb /var/go_web_server/rpm/go_web_server.spec
+![Alt text](image.png)
 
-## 安装
-version=0.1
-release=7.all
-echo RPM信息
-rpm -qpi ~/rpmbuild/RPMS/x86_64/go_web_server-${version}-${release}.x86_64.rpm
-echo 配置文件
-rpm -qpc ~/rpmbuild/RPMS/x86_64/go_web_server-${version}-${release}.x86_64.rpm
-echo 所有文件
-rpm -qpl ~/rpmbuild/RPMS/x86_64/go_web_server-${version}-${release}.x86_64.rpm
-systemctl stop go_web_server
-yum remove -y go_web_server
-# rpm -ivh在安装新版本时会报错文件冲突，原因是他没有进行更新或降级的能力，而yum install可以处理可执行文件的更新或降级
-yum install -y ~/rpmbuild/RPMS/x86_64/go_web_server-${version}-${release}.x86_64.rpm
-
-## 启动
-systemctl daemon-reload
-systemctl start go_web_server
-systemctl status go_web_server --no-page
-```
-
+### Http TUNNEL proxy
 
 ```bash
-yum install -y golang
-if ! git clone https://github.com/arloor/go_web_server /var/go_web_server; then
-  cd /var/go_web_server;
-  git pull --ff-only||{
-    rm -rf /var/go_web_server;
-    git clone https://github.com/arloor/go_web_server /var/go_web_server;
-    cd /var/go_web_server;
-  }
-else
-  cd /var/go_web_server;
-fi
-
-go mod tidy
-CGO_ENABLED=0 go build -ldflags '-w -s' -a -installsuffix cgo -o go_web_server go_web_server/cmd/go_web_server
-pass=$(cat /root/.ccs_pass)
-commit=$(git rev-parse --short=8 HEAD)
-podman build -t go_web_server -f Dockerfile . --tag ccr.ccs.tencentyun.com/arloor/go_web_server:$commit
-podman login ccr.ccs.tencentyun.com -u 1293181335 -p "${pass}" # 输入账号密码登陆docker hub
-podman push ccr.ccs.tencentyun.com/arloor/go_web_server:$commit
+curl https://www.baidu.com -p -x http:/your_addr:8080 -v
 ```
