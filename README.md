@@ -3,9 +3,12 @@
 ### Usage
 
 ```bash
-$ curl -LO https://github.com/arloor/go_web_server/releases/download/v1.0.0/go_web_server # v1.0.0 is auto updated by github action
-$ chmod +x go_web_server                                                                 
-$ ./go_web_server 
+url -SLfO https://github.com/arloor/go_web_server/releases/download/v1.0.0/go_web_server # v1.0.0 is auto updated by github action 
+install go_web_server /usr/local/bin/go_web_server
+go_web_server
+```
+
+```bash
 2023/12/24 15:46:27 config.go:38: go web server config: 
 addr: :8080
 tls: false
