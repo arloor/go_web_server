@@ -3,7 +3,7 @@
 ### Usage
 
 ```shell
-url -SLfO https://github.com/arloor/go_web_server/releases/download/v1.0.0/go_web_server # v1.0.0 is auto updated by github action 
+curl -SLfO https://github.com/arloor/go_web_server/releases/download/v1.0.0/go_web_server # v1.0.0 is auto updated by github action 
 install go_web_server /usr/local/bin/go_web_server
 go_web_server
 ```
