@@ -22,8 +22,8 @@ type Config struct {
 var Instance Config
 
 func init() {
-	flag.StringVar(&Instance.Addr, "addr", ":443", "监听地址")
-	flag.BoolVar(&Instance.UseTls, "tls", true, "是否使用tls")
+	flag.StringVar(&Instance.Addr, "addr", ":8080", "监听地址")
+	flag.BoolVar(&Instance.UseTls, "tls", false, "是否使用tls")
 	flag.StringVar(&Instance.Cert, "cert", "cert.pem", "tls证书")
 	flag.StringVar(&Instance.PrivKey, "key", "privkey.pem", "tls私钥")
 	flag.StringVar(&Instance.LogPath, "log", "/tmp/proxy.log", "日志文件路径")
