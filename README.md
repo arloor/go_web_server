@@ -2,13 +2,13 @@
 
 ### Usage
 
-```bash
+```shell
 url -SLfO https://github.com/arloor/go_web_server/releases/download/v1.0.0/go_web_server # v1.0.0 is auto updated by github action 
 install go_web_server /usr/local/bin/go_web_server
 go_web_server
 ```
 
-```bash
+```shell
 2023/12/24 15:46:27 config.go:38: go web server config: 
 addr: :7777
 tls: false
@@ -31,6 +31,6 @@ auth: ""
 
 ### Http TUNNEL proxy
 
-```bash
+```shell
 curl https://www.baidu.com -p -x http:/your_addr:7777 -v
 ```
