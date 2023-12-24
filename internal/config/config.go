@@ -27,7 +27,7 @@ func init() {
 	flag.StringVar(&Instance.Cert, "cert", "cert.pem", "tls证书")
 	flag.StringVar(&Instance.PrivKey, "key", "privkey.pem", "tls私钥")
 	flag.StringVar(&Instance.LogPath, "log", "/tmp/proxy.log", "日志文件路径")
-	flag.StringVar(&Instance.WebPath, "content", "/data", "文件服务器目录")
+	flag.StringVar(&Instance.WebPath, "content", ".", "文件服务器目录")
 	flag.StringVar(&Instance.BasicAuth, "auth", "", "Basic Auth Header")
 	flag.Parse()
 	initLog()
