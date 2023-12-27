@@ -13,7 +13,7 @@
             "program": "${workspaceFolder}/cmd/${workspaceFolderBasename}",
             "args": [
                 "--addr=localhost:7788",
-                "--tls=true"
+                // "--tls=true"
             ]
         }
     ]

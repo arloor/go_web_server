@@ -6,6 +6,10 @@ import (
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 var ssl_cert *tls.Certificate = nil
@@ -13,8 +17,24 @@ var ssl_last_cert_update time.Time = time.Now()
 
 const ssl_cert_update_interval = 5 * time.Hour
 
+var (
+	// HttpRequst = promauto.NewCounterVec(prometheus.CounterOpts{
+	// 	Name: "req_from_out",
+	// 	Help: "Number of HTTP requests received",
+	// }, []string{"referer", "path"})
+	ProxyAccess = promauto.NewCounterVec(prometheus.CounterOpts{
+		Name: "proxy_access",
+		Help: "num proxy_access",
+	}, []string{"client", "target"})
+	ProxyTraffic = promauto.NewCounterVec(prometheus.CounterOpts{
+		Name: "proxy_traffic",
+		Help: "num proxy_traffic",
+	}, []string{"client", "target"})
+)
+
 func Serve() error {
 	http.HandleFunc("/ip", writeIp)
+	http.Handle("/metrics", promhttp.Handler())
 	http.HandleFunc("/", fileHandlerFunc())
 
 	instance := config.Instance

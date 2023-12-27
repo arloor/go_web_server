@@ -8,6 +8,7 @@ import (
 	"math/rand"
 	"net"
 	"net/http"
+	"strings"
 	"sync"
 )
 
@@ -18,8 +19,9 @@ func dialContextCheckACL(network, hostPort string) (net.Conn, error) {
 }
 
 func connect(w http.ResponseWriter, r *http.Request) {
+	clientAddr := strings.Split(r.RemoteAddr, ":")[0]
 	if r.Header.Get("proxy-authorization") != config.Instance.BasicAuth {
-		log.Println("wrong basic auth from", r.RemoteAddr)
+		log.Println("wrong basic auth from", clientAddr)
 		http.Error(w, "InternalServerError", http.StatusInternalServerError)
 		return
 	}
@@ -46,10 +48,13 @@ func connect(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer targetConn.Close()
+	// 使用prometheus埋点统计 tag=hostPort的次数
+	ProxyAccess.WithLabelValues(clientAddr, hostPort).Inc()
+	ProxyAccess.WithLabelValues("all", "all").Inc()
 
 	switch r.ProtoMajor {
 	case 1: // http1: hijack the whole flow
-		_, err := serveHijack(w, targetConn)
+		_, err := serveHijack(w, targetConn, clientAddr, hostPort)
 		if err != nil {
 			log.Println(err, r.RemoteAddr)
 		}
@@ -67,7 +72,7 @@ func connect(w http.ResponseWriter, r *http.Request) {
 			w.Header().Add("Server", "go_web_server")
 		}
 		wFlusher.Flush()
-		err := dualStream(targetConn, r.Body, w)
+		err := dualStream(targetConn, r.Body, w, clientAddr, hostPort)
 		if err != nil {
 			log.Println(err, r.RemoteAddr)
 		}
@@ -79,7 +84,7 @@ func connect(w http.ResponseWriter, r *http.Request) {
 
 // Hijacks the connection from ResponseWriter, writes the response and proxies data between targetConn
 // and hijacked connection.
-func serveHijack(w http.ResponseWriter, targetConn net.Conn) (int, error) {
+func serveHijack(w http.ResponseWriter, targetConn net.Conn, clientAddr string, hostPort string) (int, error) {
 	hijacker, ok := w.(http.Hijacker)
 	if !ok {
 		return http.StatusInternalServerError, errors.New("ResponseWriter does not implement Hijacker")
@@ -117,20 +122,22 @@ func serveHijack(w http.ResponseWriter, targetConn net.Conn) (int, error) {
 		return http.StatusInternalServerError, errors.New("failed to send response to client: " + err.Error())
 	}
 
-	return 0, dualStream(targetConn, clientConn, clientConn)
+	return 0, dualStream(targetConn, clientConn, clientConn, clientAddr, hostPort)
 }
 
 var bufferPool = &sync.Pool{New: func() interface{} {
 	return make([]byte, 32*1024)
 }}
 
-func dualStream(target net.Conn, clientReader io.ReadCloser, clientWriter io.Writer) error {
+func dualStream(target net.Conn, clientReader io.ReadCloser, clientWriter io.Writer, clientAddr string, hostPort string) error {
 	stream := func(w io.Writer, r io.Reader) error {
 		// copy bytes from r to w
 		buf := bufferPool.Get().([]byte)
 		defer bufferPool.Put(buf)
 		buf = buf[0:cap(buf)]
-		_, _err := flushingIoCopy(w, r, buf)
+		nw, _err := flushingIoCopy(w, r, buf)
+		ProxyTraffic.WithLabelValues(clientAddr, hostPort).Add(float64(nw))
+		ProxyTraffic.WithLabelValues("all", "all").Add(float64(nw))
 		if closeWriter, ok := w.(interface {
 			CloseWrite() error
 		}); ok {
