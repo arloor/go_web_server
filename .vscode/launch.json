@@ -10,7 +10,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/cmd/${workspaceFolderBasename}",
-            "args": ["--addr=:7788"]
+            "args": ["--addr=localhost:7788"]
         }
     ]
 }
