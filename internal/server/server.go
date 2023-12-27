@@ -18,10 +18,10 @@ var ssl_last_cert_update time.Time = time.Now()
 const ssl_cert_update_interval = 5 * time.Hour
 
 var (
-	// HttpRequst = promauto.NewCounterVec(prometheus.CounterOpts{
-	// 	Name: "req_from_out",
-	// 	Help: "Number of HTTP requests received",
-	// }, []string{"referer", "path"})
+	HttpRequst = promauto.NewCounterVec(prometheus.CounterOpts{
+		Name: "req_from_out",
+		Help: "Number of HTTP requests received",
+	}, []string{"referer", "path"})
 	ProxyAccess = promauto.NewCounterVec(prometheus.CounterOpts{
 		Name: "proxy_access",
 		Help: "num proxy_access",

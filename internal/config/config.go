@@ -17,6 +17,7 @@ type Config struct {
 	LogPath   string `yaml:"log"`
 	WebPath   string `yaml:"content"`
 	BasicAuth string `yaml:"auth"`
+	Refer     string `yaml:"refer"`
 }
 
 var Instance Config
@@ -29,6 +30,7 @@ func init() {
 	flag.StringVar(&Instance.LogPath, "log", "/tmp/proxy.log", "日志文件路径")
 	flag.StringVar(&Instance.WebPath, "content", ".", "文件服务器目录")
 	flag.StringVar(&Instance.BasicAuth, "auth", "", "Basic Auth Header")
+	flag.StringVar(&Instance.Refer, "refer", "", "本站的referer特征")
 	flag.Parse()
 	initLog()
 	out, err := yaml.Marshal(Instance)

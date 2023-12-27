@@ -24,6 +24,10 @@ func writeIp(w http.ResponseWriter, r *http.Request) {
 func fileHandlerFunc() http.HandlerFunc {
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if config.Instance.Refer != "" && r.Header.Get("referer") != "" && !strings.Contains(r.Header.Get("referer"),config.Instance.Refer){
+			HttpRequst.WithLabelValues(r.Header.Get("referer"), r.URL.Path).Inc()
+			HttpRequst.WithLabelValues("all", "all").Inc()
+		}
 
 		if containsDotDot(r.URL.Path) {
 			// Too many programs use r.URL.Path to construct the argument to

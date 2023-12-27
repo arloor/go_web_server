@@ -13,6 +13,7 @@
             "program": "${workspaceFolder}/cmd/${workspaceFolderBasename}",
             "args": [
                 "--addr=localhost:7788",
+                "--refer=arloor"
                 // "--tls=true"
             ]
         }
