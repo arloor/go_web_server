@@ -38,4 +38,4 @@ jobs:
           # git tag  -f v1.0.0 -m 'latest'
           # git push --force origin v1.0.0
           # gh release create v1.0.0 go_web_server --notes-from-tag --latest -t latest 
-          gh release create  go_web_server -n "latest" --latest -t latest --target main
+          gh release create  v1.0.0 go_web_server -n "latest" --latest -t latest --target main
