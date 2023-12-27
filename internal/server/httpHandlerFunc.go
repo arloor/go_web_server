@@ -24,7 +24,7 @@ func writeIp(w http.ResponseWriter, r *http.Request) {
 func fileHandlerFunc() http.HandlerFunc {
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if config.Instance.Refer != "" && r.Header.Get("referer") != "" && !strings.Contains(r.Header.Get("referer"),config.Instance.Refer){
+		if config.Instance.Refer != "" && r.Header.Get("referer") != "" && !strings.Contains(r.Header.Get("referer"), config.Instance.Refer)&& (strings.HasSuffix(r.URL.Path,".html")||strings.HasSuffix(r.URL.Path,"/")) {
 			HttpRequst.WithLabelValues(r.Header.Get("referer"), r.URL.Path).Inc()
 			HttpRequst.WithLabelValues("all", "all").Inc()
 		}
@@ -48,7 +48,7 @@ func logRequest(r *http.Request) {
 	if r.Method == http.MethodConnect {
 		log.Println(fmt.Sprintf("%21s", r.RemoteAddr), fmt.Sprintf("%7s", r.Method), r.Host, r.Proto)
 	} else if r.URL.Path != "/metrics" {
-		log.Println(fmt.Sprintf("%21s", r.RemoteAddr), fmt.Sprintf("%7s", r.Method), r.URL.Path, r.Proto)
+		log.Println(fmt.Sprintf("%21s", r.RemoteAddr), fmt.Sprintf("%7s", r.Method), r.URL.Path, r.Proto,fmt.Sprintf("Referer: %10s", r.Header.Get("referer")))
 	}
 }
 
