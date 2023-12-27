@@ -22,7 +22,7 @@ type Config struct {
 var Instance Config
 
 func init() {
-	flag.StringVar(&Instance.Addr, "addr", ":7777", "监听地址")
+	flag.StringVar(&Instance.Addr, "addr", ":7788", "监听地址")
 	flag.BoolVar(&Instance.UseTls, "tls", false, "是否使用tls")
 	flag.StringVar(&Instance.Cert, "cert", "cert.pem", "tls证书")
 	flag.StringVar(&Instance.PrivKey, "key", "privkey.pem", "tls私钥")

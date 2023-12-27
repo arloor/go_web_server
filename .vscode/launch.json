@@ -9,7 +9,8 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/cmd/${workspaceFolderBasename}"
+            "program": "${workspaceFolder}/cmd/${workspaceFolderBasename}",
+            "args": ["--addr=:7788"]
         }
     ]
 }

@@ -10,7 +10,7 @@ go_web_server
 
 ```shell
 2023/12/24 15:46:27 config.go:38: go web server config: 
-addr: :7777
+addr: :7788
 tls: false
 cert: cert.pem
 key: privkey.pem
@@ -32,5 +32,5 @@ auth: ""
 ### Http TUNNEL proxy
 
 ```shell
-curl https://www.baidu.com -p -x http:/localhost:7777 -v
+curl https://www.baidu.com -p -x http:/localhost:7788 -v
 ```
