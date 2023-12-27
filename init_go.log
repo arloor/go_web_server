@@ -1,3 +1,679 @@
+go: downloading golang.org/x/tools/gopls v0.14.2
+go: downloading golang.org/x/tools v0.16.1
+go: downloading golang.org/x/tools v0.14.1-0.20231114185516-c9d3e7de13fd
+go: downloading github.com/sergi/go-diff v1.1.0
+go: downloading honnef.co/go/tools v0.4.5
+go: downloading mvdan.cc/gofumpt v0.4.0
+go: downloading golang.org/x/telemetry v0.0.0-20231114163143-69313e640400
+go: downloading mvdan.cc/xurls/v2 v2.4.0
+go: downloading golang.org/x/mod v0.14.0
+go: downloading golang.org/x/sync v0.4.0
+go: downloading golang.org/x/text v0.13.0
+go: downloading golang.org/x/exp/typeparams v0.0.0-20221212164502-fae10dda9338
+go: downloading golang.org/x/sys v0.14.0
+go: downloading golang.org/x/vuln v1.0.1
+go: downloading github.com/google/go-cmp v0.5.9
+go: downloading github.com/BurntSushi/toml v1.2.1
+internal/unsafeheader
+internal/godebugs
+internal/race
+internal/goexperiment
+internal/goos
+internal/goarch
+internal/coverage/rtcov
+internal/itoa
+unicode/utf8
+unicode
+encoding
+math/bits
+runtime/internal/math
+runtime/internal/sys
+unicode/utf16
+log/internal
+crypto/internal/alias
+internal/nettrace
+internal/goversion
+internal/abi
+internal/cpu
+crypto/subtle
+sync/atomic
+crypto/internal/boring/sig
+math
+internal/platform
+container/list
+vendor/golang.org/x/crypto/cryptobyte/asn1
+runtime/internal/atomic
+internal/bytealg
+vendor/golang.org/x/crypto/internal/alias
+github.com/google/go-cmp/cmp/internal/flags
+golang.org/x/vuln/internal
+golang.org/x/tools/internal/constraints
+runtime
+sync
+internal/reflectlite
+internal/testlog
+internal/singleflight
+internal/bisect
+internal/godebug
+errors
+sort
+internal/intern
+math/rand
+internal/oserror
+io
+internal/safefilepath
+strconv
+path
+container/heap
+vendor/golang.org/x/net/dns/dnsmessage
+syscall
+golang.org/x/mod/semver
+golang.org/x/text/unicode/runenames
+crypto/internal/nistec/fiat
+bytes
+strings
+hash
+crypto/internal/randutil
+text/tabwriter
+reflect
+html
+regexp/syntax
+crypto
+bufio
+net/netip
+runtime/cgo
+go/build/constraint
+internal/types/errors
+crypto/rc4
+hash/crc32
+regexp
+vendor/golang.org/x/text/transform
+time
+internal/fmtsort
+encoding/binary
+internal/syscall/unix
+internal/syscall/execenv
+internal/saferio
+honnef.co/go/tools/printf
+net/http/internal/ascii
+github.com/google/go-cmp/cmp/internal/function
+mvdan.cc/xurls/v2
+golang.org/x/tools/gopls/internal/vulncheck/semver
+hash/adler32
+crypto/internal/edwards25519/field
+encoding/base64
+vendor/golang.org/x/crypto/internal/poly1305
+crypto/md5
+crypto/cipher
+crypto/des
+crypto/internal/boring
+vendor/golang.org/x/crypto/chacha20
+crypto/internal/edwards25519
+crypto/sha256
+crypto/aes
+crypto/sha512
+crypto/hmac
+context
+internal/poll
+io/fs
+golang.org/x/tools/gopls/internal/vulncheck/osv
+crypto/sha1
+golang.org/x/tools/internal/xcontext
+crypto/x509/internal/macos
+encoding/pem
+vendor/golang.org/x/crypto/hkdf
+embed
+vendor/golang.org/x/crypto/chacha20poly1305
+github.com/BurntSushi/toml/internal
+github.com/google/go-cmp/cmp/internal/diff
+golang.org/x/vuln/internal/osv
+golang.org/x/vuln/internal/semver
+crypto/internal/nistec
+os
+crypto/ecdh
+golang.org/x/mod/internal/lazyregexp
+internal/lazyregexp
+io/ioutil
+path/filepath
+vendor/golang.org/x/net/route
+golang.org/x/tools/internal/robustio
+fmt
+os/exec
+internal/goroot
+golang.org/x/telemetry/internal/telemetry
+log
+runtime/debug
+golang.org/x/telemetry/internal/mmap
+go/token
+net/url
+encoding/json
+golang.org/x/tools/internal/event/label
+math/big
+go/doc/comment
+github.com/sergi/go-diff/diffmatchpatch
+go/scanner
+golang.org/x/tools/gopls/internal/lsp/safetoken
+golang.org/x/telemetry/internal/counter
+golang.org/x/tools/internal/event/keys
+go/ast
+golang.org/x/mod/module
+golang.org/x/sync/errgroup
+golang.org/x/tools/internal/event/core
+golang.org/x/tools/internal/event/tag
+golang.org/x/tools/internal/event
+flag
+golang.org/x/mod/modfile
+golang.org/x/telemetry/counter
+internal/buildcfg
+golang.org/x/tools/gopls/internal/bug
+golang.org/x/sys/execabs
+golang.org/x/tools/internal/tokeninternal
+golang.org/x/tools/internal/gocommand
+golang.org/x/tools/internal/fuzzy
+golang.org/x/tools/gopls/internal/lsp/frob
+net
+go/doc
+go/internal/typeparams
+go/parser
+go/printer
+golang.org/x/tools/go/internal/packagesdriver
+golang.org/x/tools/internal/packagesinternal
+golang.org/x/tools/internal/fastwalk
+golang.org/x/tools/internal/astutil
+golang.org/x/tools/internal/diff/lcs
+golang.org/x/tools/internal/diff
+golang.org/x/tools/internal/diff/myers
+encoding/gob
+text/scanner
+golang.org/x/tools/gopls/internal/span
+golang.org/x/tools/gopls/internal/vulncheck/govulncheck
+crypto/rand
+go/constant
+golang.org/x/tools/internal/event/export
+golang.org/x/tools/gopls/internal/vulncheck
+text/template/parse
+compress/flate
+crypto/elliptic
+golang.org/x/tools/internal/pkgbits
+crypto/internal/bigmod
+go/format
+go/types
+go/build
+golang.org/x/tools/go/cfg
+compress/gzip
+crypto/internal/boring/bbig
+encoding/asn1
+crypto/ed25519
+golang.org/x/tools/internal/gopathwalk
+crypto/rsa
+crypto/dsa
+encoding/hex
+text/template
+vendor/golang.org/x/text/unicode/bidi
+vendor/golang.org/x/crypto/cryptobyte
+vendor/golang.org/x/text/unicode/norm
+crypto/ecdsa
+crypto/x509/pkix
+vendor/golang.org/x/text/secure/bidirule
+golang.org/x/tools/go/buildutil
+golang.org/x/tools/go/internal/cgo
+vendor/golang.org/x/net/http2/hpack
+mime
+html/template
+mime/quotedprintable
+net/http/internal
+github.com/BurntSushi/toml
+github.com/google/go-cmp/cmp/internal/value
+mvdan.cc/gofumpt/internal/version
+golang.org/x/tools/gopls/internal/lsp/lru
+golang.org/x/vuln/internal/derrors
+golang.org/x/tools/gopls/internal/lsp/filecache
+github.com/google/go-cmp/cmp
+golang.org/x/vuln/internal/web
+golang.org/x/vuln/internal/govulncheck
+golang.org/x/tools/go/callgraph/vta/internal/trie
+compress/zlib
+debug/dwarf
+internal/zstd
+debug/plan9obj
+golang.org/x/vuln/internal/vulncheck/internal/gosym
+runtime/trace
+golang.org/x/tools/internal/memoize
+golang.org/x/tools/internal/persistent
+golang.org/x/tools/gopls/internal/lsp/debug/log
+golang.org/x/tools/internal/event/export/metric
+golang.org/x/tools/internal/event/export/ocagent/wire
+internal/profile
+vendor/golang.org/x/net/idna
+runtime/pprof
+golang.org/x/tools/gopls/internal/lsp/snippet
+golang.org/x/telemetry
+golang.org/x/telemetry/internal/config
+golang.org/x/telemetry/internal/configstore
+golang.org/x/tools/gopls/internal/lsp/browser
+os/user
+golang.org/x/tools/internal/tool
+debug/pe
+debug/macho
+debug/elf
+internal/xcoff
+debug/buildinfo
+vendor/golang.org/x/net/http/httpproxy
+golang.org/x/tools/internal/jsonrpc2_v2
+golang.org/x/tools/internal/jsonrpc2
+golang.org/x/tools/internal/fakenet
+net/textproto
+crypto/x509
+vendor/golang.org/x/net/http/httpguts
+mime/multipart
+golang.org/x/tools/gopls/internal/lsp/protocol
+crypto/tls
+golang.org/x/tools/gopls/internal/lsp/command
+golang.org/x/tools/gopls/internal/lsp/progress
+golang.org/x/tools/go/analysis
+golang.org/x/tools/internal/analysisinternal
+golang.org/x/tools/go/analysis/passes/internal/analysisutil
+golang.org/x/tools/internal/typesinternal
+golang.org/x/exp/typeparams
+golang.org/x/tools/internal/typeparams
+honnef.co/go/tools/knowledge
+honnef.co/go/tools/staticcheck/fakereflect
+golang.org/x/tools/gopls/internal/lsp/analysis/embeddirective
+golang.org/x/tools/go/analysis/passes/asmdecl
+golang.org/x/tools/go/analysis/passes/buildtag
+golang.org/x/tools/go/analysis/passes/directive
+honnef.co/go/tools/analysis/lint
+golang.org/x/tools/go/ast/inspector
+golang.org/x/tools/go/ast/astutil
+golang.org/x/tools/go/analysis/passes/tests
+golang.org/x/tools/go/types/objectpath
+honnef.co/go/tools/analysis/facts/generated
+golang.org/x/tools/go/analysis/passes/inspect
+honnef.co/go/tools/analysis/facts/tokenfile
+golang.org/x/tools/go/analysis/passes/composite
+golang.org/x/tools/go/analysis/passes/fieldalignment
+golang.org/x/tools/go/analysis/passes/httpresponse
+golang.org/x/tools/go/analysis/passes/ifaceassert
+golang.org/x/tools/go/analysis/passes/nilfunc
+golang.org/x/tools/go/analysis/passes/shadow
+golang.org/x/tools/go/analysis/passes/shift
+golang.org/x/tools/go/analysis/passes/stdmethods
+golang.org/x/tools/go/analysis/passes/stringintconv
+golang.org/x/tools/go/analysis/passes/structtag
+golang.org/x/tools/go/analysis/passes/testinggoroutine
+golang.org/x/tools/go/analysis/passes/unreachable
+golang.org/x/tools/internal/gcimporter
+golang.org/x/tools/gopls/internal/lsp/analysis/deprecated
+golang.org/x/tools/gopls/internal/lsp/analysis/infertypeargs
+golang.org/x/tools/gopls/internal/lsp/analysis/nonewvars
+golang.org/x/tools/gopls/internal/lsp/analysis/noresultvalues
+golang.org/x/tools/gopls/internal/lsp/analysis/simplifycompositelit
+golang.org/x/tools/gopls/internal/lsp/analysis/simplifyrange
+golang.org/x/tools/gopls/internal/lsp/analysis/simplifyslice
+golang.org/x/tools/gopls/internal/lsp/analysis/unusedparams
+golang.org/x/tools/gopls/internal/lsp/analysis/useany
+golang.org/x/tools/gopls/internal/lsp/source/methodsets
+honnef.co/go/tools/analysis/facts/deprecated
+honnef.co/go/tools/config
+golang.org/x/tools/go/types/typeutil
+golang.org/x/tools/go/analysis/passes/bools
+golang.org/x/tools/go/analysis/passes/assign
+golang.org/x/tools/go/analysis/passes/cgocall
+golang.org/x/tools/go/analysis/passes/copylock
+golang.org/x/tools/go/analysis/passes/unsafeptr
+golang.org/x/tools/gopls/internal/lsp/analysis/fillreturns
+golang.org/x/tools/go/analysis/passes/appends
+golang.org/x/tools/go/analysis/passes/atomic
+golang.org/x/tools/go/analysis/passes/atomicalign
+golang.org/x/tools/go/analysis/passes/deepequalerrors
+golang.org/x/tools/go/analysis/passes/defers
+golang.org/x/tools/go/analysis/passes/errorsas
+golang.org/x/tools/go/analysis/passes/loopclosure
+golang.org/x/tools/go/analysis/passes/ctrlflow
+golang.org/x/tools/go/ssa
+golang.org/x/tools/go/analysis/passes/printf
+golang.org/x/tools/go/analysis/passes/slog
+golang.org/x/tools/go/analysis/passes/sortslice
+golang.org/x/tools/go/analysis/passes/lostcancel
+golang.org/x/tools/go/analysis/passes/timeformat
+golang.org/x/tools/go/analysis/passes/unmarshal
+golang.org/x/tools/go/analysis/passes/unusedresult
+golang.org/x/tools/gopls/internal/lsp/analysis/fillstruct
+golang.org/x/tools/gopls/internal/lsp/analysis/stubmethods
+golang.org/x/tools/gopls/internal/lsp/analysis/undeclaredname
+golang.org/x/tools/gopls/internal/lsp/analysis/unusedvariable
+golang.org/x/tools/internal/imports
+golang.org/x/tools/refactor/satisfy
+honnef.co/go/tools/go/ast/astutil
+honnef.co/go/tools/go/types/typeutil
+golang.org/x/tools/go/loader
+honnef.co/go/tools/pattern
+honnef.co/go/tools/analysis/report
+honnef.co/go/tools/go/ir
+honnef.co/go/tools/staticcheck/fakejson
+honnef.co/go/tools/staticcheck/fakexml
+mvdan.cc/gofumpt/format
+golang.org/x/tools/gopls/internal/astutil
+golang.org/x/tools/internal/facts
+golang.org/x/tools/go/gcexportdata
+net/http/httptrace
+golang.org/x/tools/go/packages
+net/http
+honnef.co/go/tools/analysis/edit
+golang.org/x/vuln/internal/vulncheck/internal/buildinfo
+golang.org/x/tools/imports
+golang.org/x/tools/internal/refactor/inline
+golang.org/x/tools/go/analysis/passes/buildssa
+golang.org/x/tools/go/callgraph
+golang.org/x/tools/go/ssa/ssautil
+golang.org/x/tools/go/analysis/passes/nilness
+golang.org/x/tools/go/analysis/passes/unusedwrite
+golang.org/x/tools/go/callgraph/vta
+golang.org/x/tools/go/callgraph/cha
+golang.org/x/tools/gopls/internal/lsp/source
+honnef.co/go/tools/go/ir/irutil
+honnef.co/go/tools/internal/passes/buildir
+honnef.co/go/tools/analysis/facts/nilness
+honnef.co/go/tools/analysis/facts/purity
+honnef.co/go/tools/analysis/facts/typedness
+honnef.co/go/tools/analysis/code
+honnef.co/go/tools/internal/sharedcheck
+golang.org/x/vuln/internal/client
+golang.org/x/tools/internal/event/export/prometheus
+golang.org/x/tools/internal/event/export/ocagent
+net/http/pprof
+golang.org/x/telemetry/internal/upload
+golang.org/x/vuln/internal/vulncheck
+golang.org/x/telemetry/upload
+honnef.co/go/tools/quickfix
+honnef.co/go/tools/simple
+honnef.co/go/tools/stylecheck
+honnef.co/go/tools/staticcheck
+golang.org/x/tools/gopls/internal/telemetry
+golang.org/x/vuln/internal/scan
+golang.org/x/vuln/scan
+golang.org/x/tools/gopls/internal/lsp/source/typerefs
+golang.org/x/tools/gopls/internal/lsp/source/xrefs
+golang.org/x/tools/gopls/internal/lsp/work
+golang.org/x/tools/gopls/internal/vulncheck/scan
+golang.org/x/tools/gopls/internal/lsp/template
+golang.org/x/tools/gopls/internal/lsp/mod
+golang.org/x/tools/gopls/internal/lsp/source/completion
+golang.org/x/tools/gopls/internal/lsp/cache
+golang.org/x/tools/gopls/internal/hooks
+golang.org/x/tools/gopls/internal/lsp/debug
+golang.org/x/tools/gopls/internal/lsp
+golang.org/x/tools/gopls/internal/lsp/lsprpc
+golang.org/x/tools/gopls/internal/lsp/cmd
+golang.org/x/tools/gopls
+go: downloading honnef.co/go/tools v0.4.6
+go: downloading golang.org/x/tools v0.12.1-0.20230825192346-2191a27a6dc5
+go: downloading golang.org/x/exp/typeparams v0.0.0-20221208152030-732eee02a75a
+go: downloading golang.org/x/sys v0.11.0
+go: downloading golang.org/x/mod v0.12.0
+honnef.co/go/tools/internal/sync
+honnef.co/go/tools/sarif
+golang.org/x/mod/semver
+honnef.co/go/tools/printf
+honnef.co/go/tools/internal/robustio
+os/signal
+golang.org/x/sys/execabs
+golang.org/x/tools/go/buildutil
+golang.org/x/tools/internal/pkgbits
+golang.org/x/tools/go/analysis
+golang.org/x/tools/internal/typeparams
+golang.org/x/tools/internal/typesinternal
+golang.org/x/tools/internal/tokeninternal
+golang.org/x/tools/internal/event/label
+honnef.co/go/tools/analysis/lint
+honnef.co/go/tools/config
+honnef.co/go/tools/go/buildid
+honnef.co/go/tools/internal/renameio
+honnef.co/go/tools/analysis/facts/generated
+golang.org/x/tools/internal/event/keys
+golang.org/x/exp/typeparams
+honnef.co/go/tools/analysis/facts/directives
+honnef.co/go/tools/lintcmd/cache
+honnef.co/go/tools/lintcmd/version
+golang.org/x/tools/go/internal/cgo
+honnef.co/go/tools/analysis/facts/tokenfile
+golang.org/x/tools/internal/event/core
+golang.org/x/tools/internal/event/tag
+honnef.co/go/tools/knowledge
+honnef.co/go/tools/analysis/facts/deprecated
+golang.org/x/tools/go/types/objectpath
+golang.org/x/tools/go/ast/astutil
+golang.org/x/tools/go/ast/inspector
+golang.org/x/tools/internal/event
+honnef.co/go/tools/staticcheck/fakereflect
+golang.org/x/tools/go/analysis/passes/inspect
+golang.org/x/tools/internal/gocommand
+golang.org/x/tools/internal/gcimporter
+golang.org/x/tools/go/internal/packagesdriver
+golang.org/x/tools/internal/packagesinternal
+honnef.co/go/tools/go/ast/astutil
+golang.org/x/tools/go/loader
+golang.org/x/tools/go/types/typeutil
+honnef.co/go/tools/pattern
+honnef.co/go/tools/analysis/report
+honnef.co/go/tools/go/types/typeutil
+honnef.co/go/tools/staticcheck/fakexml
+honnef.co/go/tools/unused
+honnef.co/go/tools/staticcheck/fakejson
+honnef.co/go/tools/go/ir
+golang.org/x/tools/go/gcexportdata
+golang.org/x/tools/go/packages
+honnef.co/go/tools/analysis/edit
+honnef.co/go/tools/go/loader
+honnef.co/go/tools/lintcmd/runner
+honnef.co/go/tools/lintcmd
+honnef.co/go/tools/internal/passes/buildir
+honnef.co/go/tools/go/ir/irutil
+honnef.co/go/tools/analysis/facts/nilness
+honnef.co/go/tools/analysis/facts/purity
+honnef.co/go/tools/analysis/facts/typedness
+honnef.co/go/tools/analysis/code
+honnef.co/go/tools/internal/sharedcheck
+honnef.co/go/tools/quickfix
+honnef.co/go/tools/stylecheck
+honnef.co/go/tools/simple
+honnef.co/go/tools/staticcheck
+honnef.co/go/tools/cmd/staticcheck
+go: downloading golang.org/x/lint v0.0.0-20210508222113-6edffad5e616
+go: downloading golang.org/x/tools v0.0.0-20200130002326-2f3ba24bd6e7
+golang.org/x/tools/go/ast/astutil
+golang.org/x/tools/go/internal/gcimporter
+golang.org/x/tools/go/gcexportdata
+golang.org/x/lint
+golang.org/x/lint/golint
+go: downloading github.com/mgechev/revive v1.3.4
+go: downloading github.com/fatih/color v1.15.0
+go: downloading github.com/mgechev/dots v0.0.0-20210922191527-e955255bf517
+go: downloading github.com/pkg/errors v0.9.1
+go: downloading github.com/mitchellh/go-homedir v1.1.0
+go: downloading github.com/BurntSushi/toml v1.3.2
+go: downloading github.com/chavacava/garif v0.1.0
+go: downloading github.com/olekukonko/tablewriter v0.0.5
+go: downloading github.com/fatih/structtag v1.2.0
+go: downloading golang.org/x/tools v0.13.0
+go: downloading github.com/mattn/go-colorable v0.1.13
+go: downloading github.com/mattn/go-isatty v0.0.17
+go: downloading github.com/mattn/go-runewidth v0.0.9
+go: downloading golang.org/x/sys v0.12.0
+github.com/BurntSushi/toml/internal
+github.com/mattn/go-runewidth
+golang.org/x/sys/unix
+encoding/xml
+github.com/chavacava/garif
+github.com/mgechev/revive/internal/typeparams
+encoding/csv
+go/internal/gccgoimporter
+github.com/BurntSushi/toml
+internal/pkgbits
+go/internal/srcimporter
+github.com/fatih/structtag
+golang.org/x/tools/internal/typeparams
+github.com/mgechev/dots
+github.com/olekukonko/tablewriter
+go/internal/gcimporter
+golang.org/x/tools/go/ast/astutil
+github.com/mgechev/revive/logging
+github.com/pkg/errors
+github.com/mitchellh/go-homedir
+go/importer
+github.com/mgechev/revive/lint
+github.com/mgechev/revive/internal/ifelse
+github.com/mgechev/revive/rule
+github.com/mattn/go-isatty
+github.com/mattn/go-colorable
+github.com/fatih/color
+github.com/mgechev/revive/formatter
+github.com/mgechev/revive/config
+github.com/mgechev/revive/revivelib
+github.com/mgechev/revive/cli
+github.com/mgechev/revive
+go: downloading github.com/go-delve/delve v1.21.2
+go: downloading github.com/sirupsen/logrus v1.6.0
+go: downloading github.com/spf13/cobra v1.1.3
+go: downloading github.com/mattn/go-isatty v0.0.3
+go: downloading github.com/spf13/pflag v1.0.5
+go: downloading github.com/hashicorp/golang-lru v0.5.4
+go: downloading golang.org/x/arch v0.0.0-20190927153633-4e8777c89be4
+go: downloading github.com/cosiner/argv v0.1.0
+go: downloading github.com/derekparker/trie v0.0.0-20221213183930-4c74548207f4
+go: downloading github.com/go-delve/liner v1.2.3-0.20220127212407-d32d89dd2a5d
+go: downloading github.com/google/go-dap v0.9.1
+go: downloading github.com/cpuguy83/go-md2man/v2 v2.0.0
+go: downloading go.starlark.net v0.0.0-20220816155156-cfacd8902214
+go: downloading github.com/mattn/go-runewidth v0.0.13
+go: downloading github.com/russross/blackfriday/v2 v2.0.1
+go: downloading github.com/rivo/uniseg v0.2.0
+go: downloading github.com/shurcooL/sanitized_anchor_name v1.0.0
+container/ring
+github.com/rivo/uniseg
+github.com/shurcooL/sanitized_anchor_name
+github.com/go-delve/delve/pkg/dwarf/leb128
+github.com/hashicorp/golang-lru/simplelru
+github.com/derekparker/trie
+github.com/go-delve/delve/pkg/proc/macutil
+github.com/mattn/go-isatty
+github.com/go-delve/delve/pkg/dwarf
+debug/gosym
+github.com/go-delve/delve/pkg/dwarf/regnum
+github.com/go-delve/delve/pkg/astutil
+github.com/go-delve/delve/pkg/elfwriter
+github.com/go-delve/delve/pkg/dwarf/op
+github.com/go-delve/delve/pkg/dwarf/frame
+github.com/go-delve/delve/pkg/dwarf/line
+github.com/sirupsen/logrus
+github.com/go-delve/delve/pkg/version
+github.com/spf13/pflag
+github.com/go-delve/delve/pkg/proc/debuginfod
+golang.org/x/arch/ppc64/ppc64asm
+golang.org/x/arch/arm64/arm64asm
+golang.org/x/arch/x86/x86asm
+github.com/go-delve/delve/pkg/dwarf/godwarf
+github.com/cosiner/argv
+github.com/go-delve/delve/pkg/terminal/colorize
+github.com/go-delve/delve/pkg/logflags
+github.com/mattn/go-runewidth
+net/rpc
+github.com/go-delve/liner
+github.com/go-delve/delve/pkg/goversion
+go.starlark.net/internal/spell
+go.starlark.net/syntax
+net/rpc/jsonrpc
+github.com/go-delve/delve/service/internal/sameuser
+github.com/google/go-dap
+github.com/russross/blackfriday/v2
+go.starlark.net/resolve
+go.starlark.net/internal/compile
+go.starlark.net/starlark
+github.com/go-delve/delve/pkg/dwarf/loclist
+github.com/go-delve/delve/pkg/dwarf/reader
+github.com/go-delve/delve/pkg/proc/internal/ebpf
+github.com/cpuguy83/go-md2man/v2/md2man
+github.com/spf13/cobra
+github.com/go-delve/delve/pkg/proc
+github.com/go-delve/delve/cmd/dlv/cmds/helphelpers
+github.com/spf13/cobra/doc
+go.starlark.net/starlarkstruct
+go.starlark.net/lib/time
+github.com/go-delve/delve/pkg/proc/amd64util
+github.com/go-delve/delve/pkg/proc/winutil
+github.com/go-delve/delve/service/api
+github.com/go-delve/delve/pkg/proc/linutil
+github.com/go-delve/delve/pkg/proc/native
+github.com/go-delve/delve/pkg/proc/core/minidump
+github.com/go-delve/delve/pkg/config
+github.com/go-delve/delve/pkg/locspec
+github.com/go-delve/delve/pkg/proc/core
+github.com/go-delve/delve/pkg/gobuild
+github.com/go-delve/delve/pkg/proc/gdbserial
+github.com/go-delve/delve/service/debugger
+github.com/go-delve/delve/service
+github.com/go-delve/delve/service/rpc2
+github.com/go-delve/delve/service/rpc1
+github.com/go-delve/delve/service/dap
+github.com/go-delve/delve/pkg/terminal/starbind
+github.com/go-delve/delve/service/rpccommon
+github.com/go-delve/delve/pkg/terminal
+github.com/go-delve/delve/cmd/dlv/cmds
+github.com/go-delve/delve/cmd/dlv
+go: downloading github.com/fatih/gomodifytags v1.16.0
+go: downloading github.com/fatih/camelcase v1.0.0
+go: downloading golang.org/x/tools v0.0.0-20180824175216-6c1c5e93cdc1
+github.com/fatih/camelcase
+golang.org/x/tools/go/buildutil
+github.com/fatih/gomodifytags
+go: downloading github.com/haya14busa/goplay v1.0.0
 go: finding module for package github.com/skratchdot/open-golang/open
+go: downloading github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966
 go: found github.com/skratchdot/open-golang/open in github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966
+github.com/skratchdot/open-golang/open
+github.com/haya14busa/goplay
+github.com/haya14busa/goplay/cmd/goplay
+go: downloading github.com/cweill/gotests v1.6.0
+go: downloading golang.org/x/tools v0.0.0-20191109212701-97ad0ed33101
+golang.org/x/tools/internal/semver
+github.com/cweill/gotests/internal/models
+golang.org/x/tools/go/ast/astutil
+golang.org/x/tools/internal/fastwalk
+golang.org/x/tools/internal/span
+golang.org/x/tools/internal/module
+golang.org/x/tools/go/internal/packagesdriver
+golang.org/x/tools/go/internal/gcimporter
+github.com/cweill/gotests/internal/goparser
+github.com/cweill/gotests/internal/input
+golang.org/x/tools/internal/gopathwalk
+github.com/cweill/gotests/internal/render/bindata
+github.com/cweill/gotests/templates
+github.com/cweill/gotests/internal/render
+golang.org/x/tools/go/gcexportdata
+golang.org/x/tools/go/packages
+golang.org/x/tools/internal/imports
+golang.org/x/tools/imports
+github.com/cweill/gotests/internal/output
+github.com/cweill/gotests
+github.com/cweill/gotests/gotests/process
+github.com/cweill/gotests/gotests
 malformed import path " ": invalid char ' '
+go: downloading github.com/josharian/impl v1.2.0
+go: downloading golang.org/x/tools v0.0.0-20200522201501-cb1345f3a375
+go: downloading golang.org/x/mod v0.2.0
+go: downloading golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543
+golang.org/x/mod/semver
+golang.org/x/xerrors/internal
+golang.org/x/tools/internal/event/label
+golang.org/x/xerrors
+golang.org/x/tools/internal/fastwalk
+golang.org/x/tools/go/ast/astutil
+golang.org/x/tools/internal/event/keys
+golang.org/x/tools/internal/gopathwalk
+golang.org/x/mod/module
+golang.org/x/tools/internal/event/core
+golang.org/x/tools/internal/event
+golang.org/x/tools/internal/gocommand
+golang.org/x/tools/internal/imports
+golang.org/x/tools/imports
+github.com/josharian/impl
