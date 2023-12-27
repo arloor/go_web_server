@@ -12,8 +12,8 @@ GO_TOOLS="\
     github.com/haya14busa/goplay/cmd/goplay@latest \
     github.com/cweill/gotests/gotests@latest \ 
     github.com/josharian/impl@latest"
-(echo "${GO_TOOLS}" | xargs -n 1 go install -v )2>&1 | tee -a ./init_go.log
+(echo "${GO_TOOLS}" | xargs -n 1 go install -v )2>&1 | tee  ./init_go.log
 
 echo "Installing golangci-lint latest..."
 curl -fsSL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | \
-    sh -s -- -b "$HOME/go/bin"
+    sh -s -- -b "$HOME/go/bin" | tee  -a ./init_go.log
