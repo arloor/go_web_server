@@ -128,7 +128,7 @@ func dualStream(target net.Conn, clientReader io.ReadCloser, clientWriter io.Wri
 	stream := func(w io.Writer, r io.Reader) error {
 		// copy bytes from r to w
 		buf := bufferPool.Get().([]byte)
-		defer bufferPool.Put(&buf)
+		defer bufferPool.Put(buf)
 		buf = buf[0:cap(buf)]
 		_, _err := flushingIoCopy(w, r, buf)
 		if closeWriter, ok := w.(interface {
