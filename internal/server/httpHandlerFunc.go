@@ -43,7 +43,7 @@ func fileHandlerFunc() http.HandlerFunc {
 func logRequest(r *http.Request) {
 	if r.Method == http.MethodConnect {
 		log.Println(fmt.Sprintf("%21s", r.RemoteAddr), fmt.Sprintf("%7s", r.Method), r.Host, r.Proto)
-	} else {
+	} else if r.URL.Path != "/metrics" {
 		log.Println(fmt.Sprintf("%21s", r.RemoteAddr), fmt.Sprintf("%7s", r.Method), r.URL.Path, r.Proto)
 	}
 }
