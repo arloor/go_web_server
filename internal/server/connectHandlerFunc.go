@@ -48,9 +48,6 @@ func connect(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer targetConn.Close()
-	// 使用prometheus埋点统计 tag=hostPort的次数
-	ProxyAccess.WithLabelValues(clientAddr, hostPort).Inc()
-	ProxyAccess.WithLabelValues("all", "all").Inc()
 
 	switch r.ProtoMajor {
 	case 1: // http1: hijack the whole flow
@@ -137,7 +134,6 @@ func dualStream(target net.Conn, clientReader io.ReadCloser, clientWriter io.Wri
 		buf = buf[0:cap(buf)]
 		nw, _err := flushingIoCopy(w, r, buf)
 		ProxyTraffic.WithLabelValues(clientAddr, hostPort).Add(float64(nw))
-		ProxyTraffic.WithLabelValues("all", "all").Add(float64(nw))
 		if closeWriter, ok := w.(interface {
 			CloseWrite() error
 		}); ok {

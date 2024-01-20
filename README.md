@@ -32,5 +32,5 @@ auth: ""
 ### Http TUNNEL proxy
 
 ```shell
-curl https://www.baidu.com -p -x http:/localhost:7788 -v
+curl https://www.baidu.com -p -x https:/localhost:7788 -v --proxy-insecure
 ```
