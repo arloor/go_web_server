@@ -15,7 +15,7 @@ import (
 func dialContextCheckACL(network, hostPort string) (net.Conn, error) {
 	// This is net.Dial's default behavior: if the host resolves to multiple IP addresses,
 	// Dial will try each IP address in order until one succeeds
-	return net.Dial("tcp", hostPort)
+	return net.Dial(network, hostPort)
 }
 
 func connect(w http.ResponseWriter, r *http.Request) {
