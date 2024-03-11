@@ -4,11 +4,13 @@ import (
 	"encoding/base64"
 	"flag"
 	"fmt"
-	"gopkg.in/natefinch/lumberjack.v2"
-	"gopkg.in/yaml.v2"
 	"io"
 	"log"
 	"os"
+	"strings"
+
+	"gopkg.in/natefinch/lumberjack.v2"
+	"gopkg.in/yaml.v2"
 )
 
 type stringArray []string
@@ -32,7 +34,7 @@ type Config struct {
 	LogPath   string          `yaml:"log"`
 	WebPath   string          `yaml:"content"`
 	Users     stringArray     `yaml:"users"`
-	BasicAuth map[string]bool `yaml:"auth"`
+	BasicAuth map[string]string `yaml:"auth"`
 	Refer     string          `yaml:"refer"`
 }
 
@@ -48,10 +50,10 @@ func init() {
 	flag.Var(&Instance.Users, "user", "")
 	flag.StringVar(&Instance.Refer, "refer", "", "本站的referer特征")
 	flag.Parse()
-	Instance.BasicAuth = make(map[string]bool)
+	Instance.BasicAuth = make(map[string]string)
 	for _, user := range Instance.Users {
 		base64Encode := "Basic " + base64.StdEncoding.EncodeToString([]byte(user))
-		Instance.BasicAuth[base64Encode] = true
+		Instance.BasicAuth[base64Encode] = strings.Split(user, ":")[0]
 	}
 	initLog()
 	out, err := yaml.Marshal(Instance)

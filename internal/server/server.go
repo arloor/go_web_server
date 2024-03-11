@@ -25,7 +25,7 @@ var (
 	ProxyTraffic = promauto.NewCounterVec(prometheus.CounterOpts{
 		Name: "proxy_traffic_total",
 		Help: "num proxy_traffic",
-	}, []string{"client", "target"})
+	}, []string{"client", "target","username"})
 )
 
 func Serve() error {
