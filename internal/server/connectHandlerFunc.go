@@ -20,10 +20,12 @@ func dialContextCheckACL(network, hostPort string) (net.Conn, error) {
 
 func connect(w http.ResponseWriter, r *http.Request) {
 	clientAddr := strings.Split(r.RemoteAddr, ":")[0]
-	if r.Header.Get("proxy-authorization") != config.Instance.BasicAuth {
-		log.Println("wrong basic auth from", clientAddr)
-		http.Error(w, "InternalServerError", http.StatusInternalServerError)
-		return
+	if len(config.Instance.BasicAuth) != 0 {
+		if _, ok := config.Instance.BasicAuth[r.Header.Get("proxy-authorization")]; !ok {
+			log.Println("wrong basic auth from", clientAddr)
+			http.Error(w, "InternalServerError", http.StatusInternalServerError)
+			return
+		}
 	}
 	if r.ProtoMajor == 2 {
 		if len(r.URL.Scheme) > 0 || len(r.URL.Path) > 0 {

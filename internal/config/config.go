@@ -1,7 +1,9 @@
 package config
 
 import (
+	"encoding/base64"
 	"flag"
+	"fmt"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"gopkg.in/yaml.v2"
 	"io"
@@ -9,29 +11,48 @@ import (
 	"os"
 )
 
+type stringArray []string
+
+func (i *stringArray) String() string {
+	return fmt.Sprint(*i)
+}
+
+// Set 方法是flag.Value接口, 设置flag Value的方法.
+// 通过多个flag指定的值， 所以我们追加到最终的数组上.
+func (i *stringArray) Set(value string) error {
+	*i = append(*i, value)
+	return nil
+}
+
 type Config struct {
-	Addr      string `yaml:"addr"`
-	UseTls    bool   `yaml:"tls"`
-	Cert      string `yaml:"cert"`
-	PrivKey   string `yaml:"key"`
-	LogPath   string `yaml:"log"`
-	WebPath   string `yaml:"content"`
-	BasicAuth string `yaml:"auth"`
-	Refer     string `yaml:"refer"`
+	Addrs     stringArray     `yaml:"addrs"`
+	UseTls    bool            `yaml:"tls"`
+	Cert      string          `yaml:"cert"`
+	PrivKey   string          `yaml:"key"`
+	LogPath   string          `yaml:"log"`
+	WebPath   string          `yaml:"content"`
+	Users     stringArray     `yaml:"users"`
+	BasicAuth map[string]bool `yaml:"auth"`
+	Refer     string          `yaml:"refer"`
 }
 
 var Instance Config
 
 func init() {
-	flag.StringVar(&Instance.Addr, "addr", ":7788", "监听地址")
+	flag.Var(&Instance.Addrs, "addr", ":7788")
 	flag.BoolVar(&Instance.UseTls, "tls", false, "是否使用tls")
 	flag.StringVar(&Instance.Cert, "cert", "cert.pem", "tls证书")
 	flag.StringVar(&Instance.PrivKey, "key", "privkey.pem", "tls私钥")
 	flag.StringVar(&Instance.LogPath, "log", "/tmp/proxy.log", "日志文件路径")
 	flag.StringVar(&Instance.WebPath, "content", ".", "文件服务器目录")
-	flag.StringVar(&Instance.BasicAuth, "auth", "", "Basic Auth Header")
+	flag.Var(&Instance.Users, "user", "")
 	flag.StringVar(&Instance.Refer, "refer", "", "本站的referer特征")
 	flag.Parse()
+	Instance.BasicAuth = make(map[string]bool)
+	for _, user := range Instance.Users {
+		base64Encode := "Basic " + base64.StdEncoding.EncodeToString([]byte(user))
+		Instance.BasicAuth[base64Encode] = true
+	}
 	initLog()
 	out, err := yaml.Marshal(Instance)
 	if err != nil {
