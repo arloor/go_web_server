@@ -27,15 +27,15 @@ func (i *stringArray) Set(value string) error {
 }
 
 type Config struct {
-	Addrs     stringArray     `yaml:"addrs"`
-	UseTls    bool            `yaml:"tls"`
-	Cert      string          `yaml:"cert"`
-	PrivKey   string          `yaml:"key"`
-	LogPath   string          `yaml:"log"`
-	WebPath   string          `yaml:"content"`
-	Users     stringArray     `yaml:"users"`
+	Addrs     stringArray       `yaml:"addrs"`
+	UseTls    bool              `yaml:"tls"`
+	Cert      string            `yaml:"cert"`
+	PrivKey   string            `yaml:"key"`
+	LogPath   string            `yaml:"log"`
+	WebPath   string            `yaml:"content"`
+	Users     stringArray       `yaml:"users"`
 	BasicAuth map[string]string `yaml:"auth"`
-	Refer     string          `yaml:"refer"`
+	Refer     string            `yaml:"refer"`
 }
 
 var Instance Config
@@ -50,7 +50,7 @@ func init() {
 	flag.Var(&Instance.Users, "user", "Basic认证的用户名密码，例如username:password")
 	flag.StringVar(&Instance.Refer, "refer", "", "本站的referer特征")
 	flag.Parse()
-	if len(Instance.Addrs)==0{
+	if len(Instance.Addrs) == 0 {
 		Instance.Addrs = append(Instance.Addrs, ":7788")
 	}
 	Instance.BasicAuth = make(map[string]string)
