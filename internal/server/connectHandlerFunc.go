@@ -142,7 +142,9 @@ func dualStream(target net.Conn, clientReader io.ReadCloser, clientWriter io.Wri
 		if closeWriter, ok := w.(interface {
 			CloseWrite() error
 		}); ok {
-			closeWriter.CloseWrite()
+			if err := closeWriter.CloseWrite(); err != nil {
+				return err
+			}
 		}
 		return _err
 	}
