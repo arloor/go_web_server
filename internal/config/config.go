@@ -41,13 +41,13 @@ type Config struct {
 var Instance Config
 
 func init() {
-	flag.Var(&Instance.Addrs, "addr", ":7788")
+	flag.Var(&Instance.Addrs, "addr", "监听地址，例如 :7788 。支持多个地址。默认监听 :7788")
 	flag.BoolVar(&Instance.UseTls, "tls", false, "是否使用tls")
 	flag.StringVar(&Instance.Cert, "cert", "cert.pem", "tls证书")
 	flag.StringVar(&Instance.PrivKey, "key", "privkey.pem", "tls私钥")
 	flag.StringVar(&Instance.LogPath, "log", "/tmp/proxy.log", "日志文件路径")
 	flag.StringVar(&Instance.WebPath, "content", ".", "文件服务器目录")
-	flag.Var(&Instance.Users, "user", "")
+	flag.Var(&Instance.Users, "user", "Basic认证的用户名密码，例如username:password")
 	flag.StringVar(&Instance.Refer, "refer", "", "本站的referer特征")
 	flag.Parse()
 	if len(Instance.Addrs)==0{
