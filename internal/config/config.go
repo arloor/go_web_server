@@ -50,6 +50,9 @@ func init() {
 	flag.Var(&Instance.Users, "user", "")
 	flag.StringVar(&Instance.Refer, "refer", "", "本站的referer特征")
 	flag.Parse()
+	if len(Instance.Addrs)==0{
+		Instance.Addrs = append(Instance.Addrs, ":7788")
+	}
 	Instance.BasicAuth = make(map[string]string)
 	for _, user := range Instance.Users {
 		base64Encode := "Basic " + base64.StdEncoding.EncodeToString([]byte(user))
