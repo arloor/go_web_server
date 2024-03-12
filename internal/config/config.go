@@ -38,30 +38,30 @@ type Config struct {
 	Refer     string            `yaml:"refer"`
 }
 
-var Instance Config
+var GlobalConfig Config
 
 func init() {
-	flag.Var(&Instance.Addrs, "addr", "监听地址，例如 :7788 。支持多个地址。默认监听 :7788")
-	flag.BoolVar(&Instance.UseTls, "tls", false, "是否使用tls")
-	flag.StringVar(&Instance.Cert, "cert", "cert.pem", "tls证书")
-	flag.StringVar(&Instance.PrivKey, "key", "privkey.pem", "tls私钥")
-	flag.StringVar(&Instance.LogPath, "log", "/tmp/proxy.log", "日志文件路径")
-	flag.StringVar(&Instance.WebPath, "content", ".", "文件服务器目录")
-	flag.Var(&Instance.Users, "user", "Basic认证的用户名密码，例如username:password")
-	flag.StringVar(&Instance.Refer, "refer", "", "本站的referer特征")
+	flag.Var(&GlobalConfig.Addrs, "addr", "监听地址，例如 :7788 。支持多个地址。默认监听 :7788")
+	flag.BoolVar(&GlobalConfig.UseTls, "tls", false, "是否使用tls")
+	flag.StringVar(&GlobalConfig.Cert, "cert", "cert.pem", "tls证书")
+	flag.StringVar(&GlobalConfig.PrivKey, "key", "privkey.pem", "tls私钥")
+	flag.StringVar(&GlobalConfig.LogPath, "log", "/tmp/proxy.log", "日志文件路径")
+	flag.StringVar(&GlobalConfig.WebPath, "content", ".", "文件服务器目录")
+	flag.Var(&GlobalConfig.Users, "user", "Basic认证的用户名密码，例如username:password")
+	flag.StringVar(&GlobalConfig.Refer, "refer", "", "本站的referer特征")
 	flag.Parse()
-	if len(Instance.Addrs) == 0 {
-		Instance.Addrs = append(Instance.Addrs, ":7788")
+	if len(GlobalConfig.Addrs) == 0 {
+		GlobalConfig.Addrs = append(GlobalConfig.Addrs, ":7788")
 	}
-	Instance.BasicAuth = make(map[string]string)
-	for _, user := range Instance.Users {
+	GlobalConfig.BasicAuth = make(map[string]string)
+	for _, user := range GlobalConfig.Users {
 		base64Encode := "Basic " + base64.StdEncoding.EncodeToString([]byte(user))
-		Instance.BasicAuth[base64Encode] = strings.Split(user, ":")[0]
+		GlobalConfig.BasicAuth[base64Encode] = strings.Split(user, ":")[0]
 	}
 	initLog()
-	out, err := yaml.Marshal(Instance)
+	out, err := yaml.Marshal(GlobalConfig)
 	if err != nil {
-		log.Println("go web server config:", Instance)
+		log.Println("go web server config:", GlobalConfig)
 	} else {
 		log.Printf("go web server config: \n%s", string(out))
 	}
@@ -117,7 +117,7 @@ func init() {
 //}
 
 func initLog() {
-	file := Instance.LogPath
+	file := GlobalConfig.LogPath
 	rollingFile := &lumberjack.Logger{
 		Filename:   file,
 		MaxSize:    50,

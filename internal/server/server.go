@@ -25,7 +25,7 @@ var (
 	ProxyTraffic = promauto.NewCounterVec(prometheus.CounterOpts{
 		Name: "proxy_traffic_total",
 		Help: "num proxy_traffic",
-	}, []string{"client", "target","username"})
+	}, []string{"client", "target", "username"})
 )
 
 func Serve() error {
@@ -35,7 +35,7 @@ func Serve() error {
 
 	errors := make(chan error)
 
-	instance := config.Instance
+	instance := config.GlobalConfig
 	handler := MineHandler{}
 	for _, addr := range instance.Addrs {
 		srv := &http.Server{

@@ -24,7 +24,7 @@ func writeIp(w http.ResponseWriter, r *http.Request) {
 func fileHandlerFunc() http.HandlerFunc {
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if config.Instance.Refer != "" && r.Header.Get("referer") != "" && !strings.Contains(r.Header.Get("referer"), config.Instance.Refer) && (strings.HasSuffix(r.URL.Path, ".html") || strings.HasSuffix(r.URL.Path, "/")) {
+		if config.GlobalConfig.Refer != "" && r.Header.Get("referer") != "" && !strings.Contains(r.Header.Get("referer"), config.GlobalConfig.Refer) && (strings.HasSuffix(r.URL.Path, ".html") || strings.HasSuffix(r.URL.Path, "/")) {
 			HttpRequst.WithLabelValues(r.Header.Get("referer"), r.URL.Path).Inc()
 			HttpRequst.WithLabelValues("all", "all").Inc()
 		}
@@ -39,7 +39,7 @@ func fileHandlerFunc() http.HandlerFunc {
 			http.Error(w, "invalid URL path", http.StatusBadRequest)
 			return
 		}
-		fs := http.FileServer(http.Dir(config.Instance.WebPath))
+		fs := http.FileServer(http.Dir(config.GlobalConfig.WebPath))
 		http.StripPrefix("/", fs).ServeHTTP(w, r)
 	})
 }
