@@ -35,9 +35,9 @@ func Serve() error {
 
 	errors := make(chan error)
 
-	instance := config.GlobalConfig
+	globalConfig := config.GlobalConfig
 	handler := MineHandler{}
-	for _, addr := range instance.Addrs {
+	for _, addr := range globalConfig.Addrs {
 		srv := &http.Server{
 			Addr:              addr,
 			Handler:           handler,
@@ -47,31 +47,12 @@ func Serve() error {
 			WriteTimeout:      30 * time.Second, // Set idle timeout
 			TLSConfig: &tls.Config{
 				GetCertificate: func(*tls.ClientHelloInfo) (*tls.Certificate, error) {
-					// Always get latest localhost.crt and localhost.key
-					// ex: keeping certificates file somewhere in global location where created certificates updated and this closure function can refer that
-					now := time.Now()
-					if ssl_cert == nil || now.Sub(ssl_last_cert_update) > ssl_cert_update_interval {
-						cert, err := tls.LoadX509KeyPair(instance.Cert, instance.PrivKey)
-						if err != nil {
-							log.Println("Error loading certificate", err)
-							if ssl_cert != nil {
-								return ssl_cert, nil
-							}
-							return nil, err
-						} else {
-							log.Println("Loaded certificate", instance.Cert, instance.PrivKey)
-						}
-						ssl_cert = &cert
-						ssl_last_cert_update = now
-						return &cert, nil
-					} else {
-						return ssl_cert, nil
-					}
+					return load_new_cert_if_need(globalConfig.Cert,globalConfig.PrivKey)
 				},
 			},
 		}
 		go func() {
-			if !instance.UseTls {
+			if !globalConfig.UseTls {
 				errors <- srv.ListenAndServe()
 			} else {
 				errors <- srv.ListenAndServeTLS("", "")
@@ -79,4 +60,25 @@ func Serve() error {
 		}()
 	}
 	return <-errors
+}
+
+func load_new_cert_if_need(cert_file,privkey string) (*tls.Certificate, error) {
+	now := time.Now()
+	if ssl_cert == nil || now.Sub(ssl_last_cert_update) > ssl_cert_update_interval {
+		cert, err := tls.LoadX509KeyPair(cert_file,privkey)
+		if err != nil {
+			log.Println("Error loading certificate", err)
+			if ssl_cert != nil {
+				return ssl_cert, nil
+			}
+			return nil, err
+		} else {
+			log.Println("Loaded certificate", cert_file,privkey)
+		}
+		ssl_cert = &cert
+		ssl_last_cert_update = now
+		return &cert, nil
+	} else {
+		return ssl_cert, nil
+	}
 }
