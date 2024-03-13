@@ -15,8 +15,9 @@
                 "--addr=localhost:7788",
                 "--addr=localhost:3333",
                 "--user=username:password",
-                "--refer=arloor"
-                ,"--tls=true"
+                "--refer=arloor",
+                "--tls=true",
+                "--content=/usr/share/nginx/html"
             ]
         }
     ]

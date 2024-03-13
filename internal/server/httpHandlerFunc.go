@@ -40,7 +40,7 @@ func fileHandlerFunc() http.HandlerFunc {
 			return
 		}
 		fs := http.FileServer(http.Dir(config.GlobalConfig.WebPath))
-		http.StripPrefix("/", fs).ServeHTTP(w, r)
+		fs.ServeHTTP(w, r)
 	})
 }
 
