@@ -5,6 +5,7 @@ import (
 	"go_web_server/internal/config"
 	"log"
 	"net/http"
+	_ "net/http/pprof"
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus"
@@ -41,10 +42,10 @@ func Serve() error {
 		srv := &http.Server{
 			Addr:              addr,
 			Handler:           handler,
-			IdleTimeout:       30 * time.Second,
-			ReadHeaderTimeout: 30 * time.Second,
-			ReadTimeout:       30 * time.Second,
-			WriteTimeout:      30 * time.Second, // Set idle timeout
+			IdleTimeout:       31 * time.Second,
+			ReadHeaderTimeout: 31 * time.Second,
+			ReadTimeout:       31 * time.Second,
+			WriteTimeout:      31 * time.Second, // Set idle timeout
 			TLSConfig: &tls.Config{
 				GetCertificate: func(*tls.ClientHelloInfo) (*tls.Certificate, error) {
 					return load_new_cert_if_need(globalConfig.Cert,globalConfig.PrivKey)
