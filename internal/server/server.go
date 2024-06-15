@@ -48,7 +48,7 @@ func Serve() error {
 			WriteTimeout:      31 * time.Second, // Set idle timeout
 			TLSConfig: &tls.Config{
 				GetCertificate: func(*tls.ClientHelloInfo) (*tls.Certificate, error) {
-					return load_new_cert_if_need(globalConfig.Cert,globalConfig.PrivKey)
+					return load_new_cert_if_need(globalConfig.Cert, globalConfig.PrivKey)
 				},
 			},
 		}
@@ -63,10 +63,10 @@ func Serve() error {
 	return <-errors
 }
 
-func load_new_cert_if_need(cert_file,privkey string) (*tls.Certificate, error) {
+func load_new_cert_if_need(cert_file, privkey string) (*tls.Certificate, error) {
 	now := time.Now()
 	if ssl_cert == nil || now.Sub(ssl_last_cert_update) > ssl_cert_update_interval {
-		cert, err := tls.LoadX509KeyPair(cert_file,privkey)
+		cert, err := tls.LoadX509KeyPair(cert_file, privkey)
 		if err != nil {
 			log.Println("Error loading certificate", err)
 			if ssl_cert != nil {
@@ -74,7 +74,7 @@ func load_new_cert_if_need(cert_file,privkey string) (*tls.Certificate, error) {
 			}
 			return nil, err
 		} else {
-			log.Println("Loaded certificate", cert_file,privkey)
+			log.Println("Loaded certificate", cert_file, privkey)
 		}
 		ssl_cert = &cert
 		ssl_last_cert_update = now
