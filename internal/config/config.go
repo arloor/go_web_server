@@ -68,54 +68,6 @@ func init() {
 
 }
 
-//const AddrEnv = "addr"
-//const UseTls = "use_tls"
-//const CERT = "cert"
-//const KEY = "key"
-//const logPath = "log_path"
-//const webPath = "web_path"
-//const constBasicAuth = "basic_auth"
-//
-//func init() {
-//	useTls := os.Getenv(UseTls) == "true"
-//	addrEnv := os.Getenv(AddrEnv)
-//	if addrEnv == "" {
-//		if useTls {
-//			addrEnv = ":8443"
-//		} else {
-//			addrEnv = ":8080"
-//		}
-//	}
-//	cert := os.Getenv(CERT)
-//	if cert == "" {
-//		cert = "cert.pem"
-//	}
-//	key := os.Getenv(KEY)
-//	if key == "" {
-//		key = "privkey.pem"
-//	}
-//	logfile := os.Getenv(logPath)
-//	if logfile == "" {
-//		logfile = "/var/log/go_web_server.log"
-//	}
-//	webContentPath := os.Getenv(webPath)
-//	if webContentPath == "" {
-//		webContentPath = "."
-//	}
-//	basicAuth := os.Getenv(constBasicAuth)
-//	Instance = Config{
-//		Addr:      addrEnv,
-//		UseTls:    useTls,
-//		Cert:      cert,
-//		PrivKey:   key,
-//		LogPath:   logfile,
-//		WebPath:   webContentPath,
-//		BasicAuth: basicAuth,
-//	}
-//	initLog()
-//	log.Println("go web server config:", Instance)
-//}
-
 func initLog() {
 	file := GlobalConfig.LogPath
 	rollingFile := &lumberjack.Logger{
