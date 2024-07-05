@@ -23,7 +23,7 @@ jobs:
       - name: build-and-push
         run: |
           go mod tidy
-          CGO_ENABLED=0 go build -ldflags '-w -s' -a -installsuffix cgo -o go_web_server go_web_server/cmd/go_web_server
+          CGO_ENABLED=0 go build -ldflags '-w -s -extldflags "-static"' -a -installsuffix cgo -o go_web_server go_web_server/cmd/go_web_server
           podman build -f Dockerfile . -t docker.io/arloor/go_web_server:${{ github.sha }} -t docker.io/arloor/go_web_server:latest
           podman login docker.io -u arloor -p ${{ env.REGISTRY_PASSWORD }}
           podman push docker.io/arloor/go_web_server:${{ github.sha }}
