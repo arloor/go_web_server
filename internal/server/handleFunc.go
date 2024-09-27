@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func writeIp(w http.ResponseWriter, r *http.Request) {
+func writeIP(w http.ResponseWriter, r *http.Request) {
 
 	remoteAddr := r.RemoteAddr
 	index := strings.LastIndex(remoteAddr, ":")
@@ -25,8 +25,8 @@ func fileHandlerFunc() http.HandlerFunc {
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if config.GlobalConfig.Refer != "" && r.Header.Get("referer") != "" && !strings.Contains(r.Header.Get("referer"), config.GlobalConfig.Refer) && (strings.HasSuffix(r.URL.Path, ".html") || strings.HasSuffix(r.URL.Path, "/")) {
-			HttpRequst.WithLabelValues(r.Header.Get("referer"), r.URL.Path).Inc()
-			HttpRequst.WithLabelValues("all", "all").Inc()
+			ReqCount.WithLabelValues(r.Header.Get("referer"), r.URL.Path).Inc()
+			ReqCount.WithLabelValues("all", "all").Inc()
 		}
 
 		if containsDotDot(r.URL.Path) {

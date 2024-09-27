@@ -13,13 +13,13 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-var ssl_cert *tls.Certificate = nil
-var ssl_last_cert_update time.Time = time.Now()
+var sslCert *tls.Certificate = nil
+var sslLastCertUpdateTime time.Time = time.Now()
 
-const ssl_cert_update_interval = 5 * time.Hour
+const sslCertUpdateInterval = 5 * time.Hour
 
 var (
-	HttpRequst = promauto.NewCounterVec(prometheus.CounterOpts{
+	ReqCount = promauto.NewCounterVec(prometheus.CounterOpts{
 		Name: "req_from_out_total",
 		Help: "Number of HTTP requests received",
 	}, []string{"referer", "path"})
@@ -30,7 +30,7 @@ var (
 )
 
 func Serve() error {
-	http.HandleFunc("/ip", writeIp)
+	http.HandleFunc("/ip", writeIP)
 	http.Handle("/metrics", promhttp.Handler())
 	http.HandleFunc("/", fileHandlerFunc())
 
@@ -48,7 +48,7 @@ func Serve() error {
 			WriteTimeout:      31 * time.Second, // Set idle timeout
 			TLSConfig: &tls.Config{
 				GetCertificate: func(*tls.ClientHelloInfo) (*tls.Certificate, error) {
-					return load_new_cert_if_need(globalConfig.Cert, globalConfig.PrivKey)
+					return loadNewCertIfNeed(globalConfig.Cert, globalConfig.PrivKey)
 				},
 			},
 		}
@@ -63,23 +63,23 @@ func Serve() error {
 	return <-errors
 }
 
-func load_new_cert_if_need(cert_file, privkey string) (*tls.Certificate, error) {
+func loadNewCertIfNeed(certFile, privkey string) (*tls.Certificate, error) {
 	now := time.Now()
-	if ssl_cert == nil || now.Sub(ssl_last_cert_update) > ssl_cert_update_interval {
-		cert, err := tls.LoadX509KeyPair(cert_file, privkey)
+	if sslCert == nil || now.Sub(sslLastCertUpdateTime) > sslCertUpdateInterval {
+		cert, err := tls.LoadX509KeyPair(certFile, privkey)
 		if err != nil {
 			log.Println("Error loading certificate", err)
-			if ssl_cert != nil {
-				return ssl_cert, nil
+			if sslCert != nil {
+				return sslCert, nil
 			}
 			return nil, err
 		} else {
-			log.Println("Loaded certificate", cert_file, privkey)
+			log.Println("Loaded certificate", certFile, privkey)
 		}
-		ssl_cert = &cert
-		ssl_last_cert_update = now
+		sslCert = &cert
+		sslLastCertUpdateTime = now
 		return &cert, nil
 	} else {
-		return ssl_cert, nil
+		return sslCert, nil
 	}
 }

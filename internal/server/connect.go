@@ -100,11 +100,13 @@ func serveHijack(w http.ResponseWriter, targetConn net.Conn, clientAddr string, 
 	if bufReader != nil {
 		// snippet borrowed from `proxy` plugin
 		if n := bufReader.Reader.Buffered(); n > 0 {
-			rbuf, err := bufReader.Reader.Peek(n)
-			if err != nil {
-				return http.StatusBadGateway, err
+			rbuf, peekErr := bufReader.Reader.Peek(n)
+			if peekErr != nil {
+				return http.StatusBadGateway, peekErr
 			}
-			targetConn.Write(rbuf)
+			if _, writeErr := targetConn.Write(rbuf); writeErr != nil {
+				return http.StatusBadGateway, writeErr
+			}
 		}
 	}
 	// Since we hijacked the connection, we lost the ability to write and flush headers via w.
@@ -134,7 +136,11 @@ var bufferPool = &sync.Pool{New: func() interface{} {
 func dualStream(target net.Conn, clientReader io.ReadCloser, clientWriter io.Writer, clientAddr string, hostPort string, username string) error {
 	stream := func(w io.Writer, r io.Reader) error {
 		// copy bytes from r to w
-		buf := bufferPool.Get().([]byte)
+		buf, ok := bufferPool.Get().([]byte)
+		if !ok {
+			return errors.New("failed to get buffer from pool")
+		}
+		// nolint:staticcheck
 		defer bufferPool.Put(buf)
 		buf = buf[0:cap(buf)]
 		nw, _err := flushingIoCopy(w, r, buf)
@@ -149,7 +155,11 @@ func dualStream(target net.Conn, clientReader io.ReadCloser, clientWriter io.Wri
 		return _err
 	}
 
-	go stream(target, clientReader)
+	go func() {
+		if err := stream(target, clientReader); err != nil {
+			log.Println("Error in stream:", err)
+		}
+	}()
 	return stream(clientWriter, target)
 }
 
