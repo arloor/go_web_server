@@ -140,8 +140,7 @@ func dualStream(target net.Conn, clientReader io.ReadCloser, clientWriter io.Wri
 		if !ok {
 			return errors.New("failed to get buffer from pool")
 		}
-		// nolint:staticcheck
-		defer bufferPool.Put(buf)
+		defer bufferPool.Put(buf) //nolint:staticcheck
 		buf = buf[0:cap(buf)]
 		nw, _err := flushingIoCopy(w, r, buf)
 		ProxyTraffic.WithLabelValues(clientAddr, hostPort, username).Add(float64(nw))
