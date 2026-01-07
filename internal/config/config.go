@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"gopkg.in/natefinch/lumberjack.v2"
-	"gopkg.in/yaml.v2"
+	"sigs.k8s.io/yaml"
 )
 
 type stringArray []string

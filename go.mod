@@ -3,7 +3,7 @@ module go_web_server
 require (
 	github.com/prometheus/client_golang v1.23.2
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
-	gopkg.in/yaml.v2 v2.4.0
+	sigs.k8s.io/yaml v1.6.0
 )
 
 require (
