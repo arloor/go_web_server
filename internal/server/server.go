@@ -53,7 +53,7 @@ func Serve() error {
 			},
 		}
 		go func() {
-			if !globalConfig.UseTls {
+			if !globalConfig.UseTlS {
 				errors <- srv.ListenAndServe()
 			} else {
 				errors <- srv.ListenAndServeTLS("", "")

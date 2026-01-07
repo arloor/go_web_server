@@ -100,7 +100,7 @@ func serveHijack(w http.ResponseWriter, targetConn net.Conn, clientAddr string, 
 	if bufReader != nil {
 		// snippet borrowed from `proxy` plugin
 		if n := bufReader.Reader.Buffered(); n > 0 {
-			rbuf, peekErr := bufReader.Reader.Peek(n)
+			rbuf, peekErr := bufReader.Peek(n)
 			if peekErr != nil {
 				return http.StatusBadGateway, peekErr
 			}
@@ -191,5 +191,5 @@ func flushingIoCopy(dst io.Writer, src io.Reader, buf []byte) (written int64, er
 			break
 		}
 	}
-	return
+	return written, err
 }

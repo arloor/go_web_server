@@ -28,7 +28,7 @@ func (i *stringArray) Set(value string) error {
 
 type Config struct {
 	Addrs     stringArray       `yaml:"addrs"`
-	UseTls    bool              `yaml:"tls"`
+	UseTlS    bool              `yaml:"tls"`
 	Cert      string            `yaml:"cert"`
 	PrivKey   string            `yaml:"key"`
 	LogPath   string            `yaml:"log"`
@@ -42,7 +42,7 @@ var GlobalConfig Config
 
 func init() {
 	flag.Var(&GlobalConfig.Addrs, "addr", "监听地址，例如 :7788 。支持多个地址。默认监听 :7788")
-	flag.BoolVar(&GlobalConfig.UseTls, "tls", false, "是否使用tls")
+	flag.BoolVar(&GlobalConfig.UseTlS, "tls", false, "是否使用tls")
 	flag.StringVar(&GlobalConfig.Cert, "cert", "cert.pem", "tls证书")
 	flag.StringVar(&GlobalConfig.PrivKey, "key", "privkey.pem", "tls私钥")
 	flag.StringVar(&GlobalConfig.LogPath, "log", "/tmp/proxy.log", "日志文件路径")
